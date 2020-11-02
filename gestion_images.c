@@ -19,14 +19,14 @@ int image4[MAX_HAUTEUR][MAX_LARGEUR];
 
 int main()
 {
-    int lignes1 = 256;
-	int colonnes1 = 256;
+    int lignes1 = 0;
+	int colonnes1 = 0;
     int lignes2 =0;
     int colonnes2 =0;
     int maxval = 256;
     //int histogramme[MAX_VALEUR+1];
-    char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
-   //char nom[MAX_CHAINE] = "tamere.txt";
+   //char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
+   char nom[MAX_CHAINE] = "tamere.pgm";
    char nom2[MAX_CHAINE] = "citronade.pgm";
     struct MetaData metadonnees;
     
@@ -48,10 +48,10 @@ int main()
 	//retour = pgm_copier(image1, lignes1, colonnes1, image4, &lignes2, &colonnes2);
 	// exemple detraitement d'un code de retour (erreur ou reussite)
 	printf("\n Eclaircir\n\n");
-	retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, maxval, 0);
+	//retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, maxval, 0);
 	//retour = pgm_creer_negatif(image1, lignes1, colonnes1, maxval);
 //	retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
-	retour = pgm_extraire(image1,9,0,16,16, &lignes1,&lignes2);
+	retour = pgm_extraire(image1,9,0,16,16, &lignes1,&colonnes2);
 	
 
 			

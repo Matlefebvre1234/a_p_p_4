@@ -15,6 +15,8 @@ struct RGB imageRGB1[MAX_HAUTEUR][MAX_LARGEUR];
 struct RGB imageRGB2[MAX_HAUTEUR][MAX_LARGEUR];
 int image3[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140, 178}, {29, 140, 19}};
 int image4[MAX_HAUTEUR][MAX_LARGEUR];
+int image5[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140}, {29, 140}};
+
 
 
 int main()
@@ -56,8 +58,12 @@ int main()
 
 			
 	printf("-> Retour: ");
+	
 	if (retour == OK)
 		printf("-> OK");
+		
+	else if(retour == DIFFERENTES)printf("-> DIFFERENTES");
+	
 	else
 		printf("-> ERREUR");
 	printf("\n");

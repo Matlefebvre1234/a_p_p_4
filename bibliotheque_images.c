@@ -103,6 +103,37 @@ int pgm_copier(int matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes
 		}
 }
 
+int pgm_eclaircir_noircir(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int colonnes, int maxval, int valeur)
+{
+	if(lignes == 0 || colonnes == 0)
+	{
+		return -1;
+	}
+	
+	else
+	{
+		for(int i = 0; i<lignes ;i++)
+		{
+			for(int j = 0; j<colonnes; j++)
+			{
+				matrice[i][j] += valeur;
+			
+				if(matrice[i][j] > maxval)
+				{	
+					matrice[i][j] = maxval;
+				}
+			
+				else if(matrice[i][j] < 0)
+				{
+					matrice[i][j] = 0;
+				}	
+			}
+		}
+	}
+	
+	return 0;	
+}
+
 int pgm_creer_histogramme(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int colonnes, int histogramme[MAX_VALEUR+1])
 {
 	int ValeurTest[MAX_VALEUR+1];

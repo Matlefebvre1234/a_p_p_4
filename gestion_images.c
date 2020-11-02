@@ -19,10 +19,10 @@ int image4[MAX_HAUTEUR][MAX_LARGEUR];
 
 int main()
 {
-    int lignes1 =0;
-	int colonnes1 =0;
-    int lignes2 =0;
-    int colonnes2 =0;
+    int lignes1 = 0;
+	int colonnes1 = 0;
+    //int lignes2 =0;
+    //int colonnes2 =0;
     int maxval = 256;
     int histogramme[MAX_VALEUR+1];
   //  char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
@@ -45,6 +45,19 @@ int main()
                   
 	//retour = pgm_copier(image1, lignes1, colonnes1, image4, &lignes2, &colonnes2);
 	// exemple detraitement d'un code de retour (erreur ou reussite)
+	retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
+	
+	printf("\n Éclaircir : %d, %d\n\n", lignes1, colonnes1);
+	
+	for(int i = 0; i<lignes1 ;i++)
+	{
+		for(int j = 0; j<colonnes1; j++)
+		{
+			printf("%d ", image1[i][j]);
+		}
+		printf("\n");
+	}
+			
 	printf("-> Retour: ");
 	if (retour == OK)
 		printf("-> OK");

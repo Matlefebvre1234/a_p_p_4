@@ -57,13 +57,14 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
                int lignes, int colonnes, 
                int maxval, struct MetaData metadonnees)
 {
-	FILE *fichierOuvert = fopen(nom_fichier, "a");
+	FILE *fichierOuvert = fopen(nom_fichier, "w");
 	
 	if(fichierOuvert == NULL) return ERREUR_FICHIER;
 	
 	else
 	{
-	fprintf(fichierOuvert, "%s; %s; %s\n", metadonnees.auteur, metadonnees.dateCreation, metadonnees.lieuCreation);
+	fprintf(fichierOuvert, "P2\n");
+	fprintf(fichierOuvert, "# %s; %s; %s\n", metadonnees.auteur, metadonnees.dateCreation, metadonnees.lieuCreation);
 	fprintf(fichierOuvert, "%d %d\n", lignes, colonnes);
 	fprintf(fichierOuvert, "%d\n", maxval);
 	
@@ -76,6 +77,16 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 			
 			fprintf(fichierOuvert, "\n");
 		}
+		
+	for(int i = 0; i<lignes ;i++)
+		{
+			for(int j = 0; j<colonnes; j++)
+			{
+				printf("%d ", matrice[i][j]);
+			}
+			
+			printf("\n");
+		}	
 	
 	fclose(fichierOuvert);
     return OK;
@@ -116,8 +127,9 @@ int pgm_eclaircir_noircir(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int
 		{
 			for(int j = 0; j<colonnes; j++)
 			{
-				matrice[i][j] += valeur;
-			
+				matrice[i][j] = matrice[i][j] + valeur;
+				printf("%d ", matrice[i][j]);
+				
 				if(matrice[i][j] > maxval)
 				{	
 					matrice[i][j] = maxval;
@@ -126,8 +138,11 @@ int pgm_eclaircir_noircir(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int
 				else if(matrice[i][j] < 0)
 				{
 					matrice[i][j] = 0;
-				}	
+				}
+					
 			}
+			
+			printf("\n");
 		}
 	}
 	
@@ -154,8 +169,6 @@ int pgm_creer_histogramme(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int
 				if(matrice[i][j] == ValeurTest[k]) histogramme[k]++;
 		
 			}
-	
-		
 		
 		}
 	
@@ -170,4 +183,25 @@ int pgm_creer_histogramme(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int
 	}
 	
 	return 0;
+}
+
+int pgm_creer_negatif(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int colonnes, int maxval)
+{
+	if(lignes == 0 || colonnes == 0)
+	{
+		return -1;
+	}
+	
+	else
+	{
+		for(int i = 0; i<lignes ;i++)
+		{
+			for(int j = 0; j<colonnes; j++)
+			{
+				matrice[i][j]  = maxval - matrice[i][j];
+			}
+		}
+		
+		return 0;
+	}
 }

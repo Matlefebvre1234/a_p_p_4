@@ -197,3 +197,39 @@ int pgm_couleur_preponderante(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes,
 	printf("%d",positionValeurMax);
 	return positionValeurMax;
 }
+
+int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes1, int lignes2, int colonnes2, int *p_lignes, int *p_colonnes)
+{
+	int matriceExtrait[MAX_HAUTEUR][MAX_LARGEUR];
+	int k =0;//compteur pour incrémentation
+	int z =0;//compteur pour incrémentation
+	for(int i =lignes1; i < lignes2;i++)
+	{
+			
+		for(int j =lignes1; j < lignes2;j++)
+		{
+			if(i > MAX_HAUTEUR || j > MAX_LARGEUR)return -1;
+			matriceExtrait[i][j] = matrice[i][j];
+
+		} 
+	
+	} 
+	
+	*p_lignes = lignes2 -lignes1;
+	*p_colonnes = colonnes2 -colonnes1;
+	
+	for(int i =0; i < *p_lignes;i++)
+	{
+		k++;
+		z =0;	
+		for(int j =lignes1; j < *p_colonnes;j++)
+		{
+			matrice[k][z] = matriceExtrait[i][j];
+			z++;	
+		
+		} 
+		
+	} 
+	
+	return 0;
+}

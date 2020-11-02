@@ -25,8 +25,8 @@ int main()
     int colonnes2 =0;
     int maxval = 256;
     int histogramme[MAX_VALEUR+1];
-    char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
-   // char nom[MAX_CHAINE] = "tamere.txt";
+  //  char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
+    char nom[MAX_CHAINE] = "tamere.txt";
    //char nom2[MAX_CHAINE] = "citronade.pgm";
     struct MetaData metadonnees;
     
@@ -40,8 +40,7 @@ int main()
      retour = pgm_lire(nom, image1, 
                       &lignes1, &colonnes1, 
                       &maxval, &metadonnees);
-     retour = pgm_creer_histogramme(image1,lignes1,colonnes1,histogramme);
-    
+     retour = pgm_couleur_preponderante(image1,lignes1,colonnes1);
 
                   
 	//retour = pgm_copier(image1, lignes1, colonnes1, image4, &lignes2, &colonnes2);

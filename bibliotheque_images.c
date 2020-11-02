@@ -109,13 +109,13 @@ int pgm_creer_histogramme(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int
 	
 	for(int i =0;i< MAX_VALEUR+1;i++)
 	{
-		histogramme[i] =0;
+		histogramme[i] =-1;
 		ValeurTest[i] = i;
 	}
 	
-	for(int i =0;i<MAX_HAUTEUR;i++)
+	for(int i =0;i<lignes;i++)
 	{
-		for(int j =0;j<MAX_LARGEUR;j++)
+		for(int j =0;j<colonnes;j++)
 		{
 			
 			for(int k =0;k<MAX_LARGEUR +1;k++)
@@ -139,4 +139,30 @@ int pgm_creer_histogramme(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int
 	}
 	
 	return 0;
+}
+
+
+
+int pgm_couleur_preponderante(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int colonnes)
+{
+	 int histogramme[MAX_VALEUR+1];
+	 int valeurHistogrammeMax = 0;
+	 int positionValeurMax=0;
+	 
+	 pgm_creer_histogramme(matrice,lignes,colonnes,histogramme);
+	
+	for(int i =0;i<MAX_VALEUR+1;i++)
+	{
+		
+		if(histogramme[i] > valeurHistogrammeMax)
+		{
+			valeurHistogrammeMax = histogramme[i];
+			positionValeurMax = i;
+			
+		}
+		
+	}
+	printf("\ncouleur pre ponderante = ");
+	printf("%d",positionValeurMax);
+	return positionValeurMax;
 }

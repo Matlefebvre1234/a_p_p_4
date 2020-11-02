@@ -6,8 +6,8 @@ Date: 25 octobre 2018
 Description: Fichier de distribution pour GEN145.
 ********/
 
-
-#include "bibliotheque_images.c"
+#include <stdio.h>
+#include "bibliotheque_images.h"
 
 int image1[MAX_HAUTEUR][MAX_LARGEUR];
 int image2[MAX_HAUTEUR][MAX_LARGEUR];

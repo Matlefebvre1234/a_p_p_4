@@ -24,7 +24,7 @@ int main()
     //int lignes2 =0;
     //int colonnes2 =0;
     int maxval = 256;
-   // int histogramme[MAX_VALEUR+1];
+    int histogramme[MAX_VALEUR+1];
     char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
    // char nom[MAX_CHAINE] = "tamere.txt";
    //char nom2[MAX_CHAINE] = "citronade.pgm";
@@ -37,9 +37,10 @@ int main()
     printf("-> Debut!\n");
 
 	// exemple d'appel de fonction
-    retour = pgm_lire(nom, image1, 
+     retour = pgm_lire(nom, image1, 
                       &lignes1, &colonnes1, 
                       &maxval, &metadonnees);
+     retour = pgm_creer_histogramme(image1,lignes1,colonnes1,histogramme);
     
 
                   
@@ -73,11 +74,11 @@ int main()
     printf("-> Fin!\n");
 
 	
-	/*printf("%d",retour);
+	printf("%d",retour);
 	printf("%d",lignes1);
 	printf("%d",lignes2);
 	printf("%d",colonnes1);
 	printf("%d",colonnes2);
-	printf("Allo");*/
+	printf("Allo");
     return 0;
 }

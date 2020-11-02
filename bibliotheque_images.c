@@ -219,3 +219,85 @@ int pgm_sont_identiques(int matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int
 		return 0;
 	}
 }
+
+int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_colonnes, int sens)
+{
+	int temp;
+	
+	for(int i = 0; i<*p_lignes ;i++)
+		{
+			for(int j = 0; j<*p_colonnes; j++)
+			{
+				temp = matrice[i][j];
+				matrice[i][j] = matrice[j][i];
+				matrice[j][i] = temp;
+			}
+			
+		}
+		
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

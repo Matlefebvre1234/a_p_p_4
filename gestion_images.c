@@ -52,7 +52,8 @@ int main()
 	printf("\n Eclaircir\n\n");
 	//retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, maxval, 0);
 	//retour = pgm_creer_negatif(image1, lignes1, colonnes1, maxval);
-	retour = pgm_sont_identiques(image3, 2,3,image5,2,2);
+	//retour = pgm_sont_identiques(image3, 2,3,image5,2,2);
+	//retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 1);
 	
 
 			

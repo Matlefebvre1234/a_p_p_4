@@ -19,15 +19,15 @@ int image4[MAX_HAUTEUR][MAX_LARGEUR];
 
 int main()
 {
-    int lignes1 = 0;
-	int colonnes1 = 0;
+    int lignes1 = 256;
+	int colonnes1 = 256;
     int lignes2 =0;
     int colonnes2 =0;
     int maxval = 256;
-    int histogramme[MAX_VALEUR+1];
-    //char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
-    char nom[MAX_CHAINE] = "tamere.txt";
-    char nom2[MAX_CHAINE] = "citronade.pgm";
+    //int histogramme[MAX_VALEUR+1];
+    char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
+   //char nom[MAX_CHAINE] = "tamere.txt";
+   char nom2[MAX_CHAINE] = "citronade.pgm";
     struct MetaData metadonnees;
     
     struct MetaData metadonnees2 = {"Mathieu", "En 2009", "En Sciences Humaines le gros noob"};;
@@ -40,24 +40,20 @@ int main()
      retour = pgm_lire(nom, image1, 
                       &lignes1, &colonnes1, 
                       &maxval, &metadonnees);
-    //retour = pgm_couleur_preponderante(image1,lignes1,colonnes1);
+                      
+     //retour = pgm_creer_histogramme(image1,lignes1,colonnes1,histogramme);
+    
 
                   
 	//retour = pgm_copier(image1, lignes1, colonnes1, image4, &lignes2, &colonnes2);
 	// exemple detraitement d'un code de retour (erreur ou reussite)
+	printf("\n Eclaircir\n\n");
+	retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, maxval, 0);
+	//retour = pgm_creer_negatif(image1, lignes1, colonnes1, maxval);
 //	retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
 	retour = pgm_extraire(image1,9,0,16,16, &lignes1,&lignes2);
 	
-	printf("\n Éclaircir : %d, %d\n\n", lignes1, colonnes1);
-	
-	for(int i = 0; i<lignes1 ;i++)
-	{
-		for(int j = 0; j<colonnes1; j++)
-		{
-			printf("%d ", image1[i][j]);
-		}
-		printf("\n");
-	}
+
 			
 	printf("-> Retour: ");
 	if (retour == OK)
@@ -67,6 +63,7 @@ int main()
 	printf("\n");
 
 	// autre exemple d'appel de fonction
+	printf("\n ecrire\n\n");
     pgm_ecrire(nom2, image1, 
                lignes1, colonnes1, 
                maxval, metadonnees2);

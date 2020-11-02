@@ -41,10 +41,10 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 			for(int j =0;j<*p_colonnes;j++)
 			{
 				fscanf(fichierOuvert,"%i",&matrice[i][j]);
-				//printf("%3i",matrice[i][j]);
-				//printf(" ");
+				printf("%3i",matrice[i][j]);
+				printf(" ");
 			}
-				//printf("\n");
+				printf("\n");
 		}
 
 		return OK;
@@ -145,13 +145,13 @@ int pgm_creer_histogramme(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int
 	
 	for(int i =0;i< MAX_VALEUR+1;i++)
 	{
-		histogramme[i] =0;
+		histogramme[i] =-1;
 		ValeurTest[i] = i;
 	}
 	
-	for(int i =0;i<MAX_HAUTEUR;i++)
+	for(int i =0;i<lignes;i++)
 	{
-		for(int j =0;j<MAX_LARGEUR;j++)
+		for(int j =0;j<colonnes;j++)
 		{
 			
 			for(int k =0;k<MAX_LARGEUR +1;k++)
@@ -171,6 +171,68 @@ int pgm_creer_histogramme(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int
 				printf(" = ");
 				printf("%d\n",histogramme[k]);
 	}
+	
+	return 0;
+}
+
+
+
+int pgm_couleur_preponderante(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int colonnes)
+{
+	 int histogramme[MAX_VALEUR+1];
+	 int valeurHistogrammeMax = 0;
+	 int positionValeurMax=0;
+	 
+	 pgm_creer_histogramme(matrice,lignes,colonnes,histogramme);
+	
+	for(int i =0;i<MAX_VALEUR+1;i++)
+	{
+		
+		if(histogramme[i] > valeurHistogrammeMax)
+		{
+			valeurHistogrammeMax = histogramme[i];
+			positionValeurMax = i;
+			
+		}
+		
+	}
+	printf("\ncouleur pre ponderante = ");
+	printf("%d",positionValeurMax);
+	return positionValeurMax;
+}
+
+int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes1, int lignes2, int colonnes2, int *p_lignes, int *p_colonnes)
+{
+	int matriceExtrait[MAX_HAUTEUR][MAX_LARGEUR];
+	int k =0;//compteur pour incrémentation
+	int z =0;//compteur pour incrémentation
+	for(int i =lignes1; i < lignes2;i++)
+	{
+			
+		for(int j =lignes1; j < lignes2;j++)
+		{
+			if(i > MAX_HAUTEUR || j > MAX_LARGEUR)return -1;
+			matriceExtrait[i][j] = matrice[i][j];
+
+		} 
+	
+	} 
+	
+	//*p_lignes = lignes2 -lignes1;
+	//*p_colonnes = colonnes2 -colonnes1;
+	
+	for(int i =0; i < *p_lignes;i++)
+	{
+		k++;
+		z =0;	
+		for(int j =lignes1; j < *p_colonnes;j++)
+		{
+			matrice[k][z] = matriceExtrait[i][j];
+			z++;	
+		
+		} 
+		
+	} 
 	
 	return 0;
 }

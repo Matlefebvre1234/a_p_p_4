@@ -21,14 +21,14 @@ int image5[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140}, {29, 140}};
 
 int main()
 {
-    int lignes1 = 256;
-	int colonnes1 = 256;
+    int lignes1 = 0;
+	int colonnes1 = 0;
     int lignes2 =0;
     int colonnes2 =0;
     int maxval = 256;
     //int histogramme[MAX_VALEUR+1];
-    char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
-   //char nom[MAX_CHAINE] = "tamere.txt";
+   //char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
+   char nom[MAX_CHAINE] = "tamere.pgm";
    char nom2[MAX_CHAINE] = "citronade.pgm";
     struct MetaData metadonnees;
     
@@ -54,7 +54,8 @@ int main()
 	//retour = pgm_creer_negatif(image1, lignes1, colonnes1, maxval);
 	//retour = pgm_sont_identiques(image3, 2,3,image5,2,2);
 	//retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 1);
-	
+//	retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
+	retour = pgm_extraire(image1,9,0,16,16, &lignes1,&colonnes2);
 
 			
 	printf("-> Retour: ");
@@ -79,9 +80,9 @@ int main()
 	
 	printf("%d",retour);
 	printf("%d",lignes1);
-	printf("%d",lignes2);
+	//printf("%d",lignes2);
 	printf("%d",colonnes1);
-	printf("%d",colonnes2);
+	//printf("%d",colonnes2);
 	printf("Allo");
     return 0;
 }

@@ -14,22 +14,23 @@ int image2[MAX_HAUTEUR][MAX_LARGEUR];
 struct RGB imageRGB1[MAX_HAUTEUR][MAX_LARGEUR];
 struct RGB imageRGB2[MAX_HAUTEUR][MAX_LARGEUR];
 int image3[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140, 178}, {29, 140, 19}};
+int image4[MAX_HAUTEUR][MAX_LARGEUR];
 
 
 int main()
 {
     int lignes1 =0;
-    int colonnes1 =0;
+	int colonnes1 =0;
     int lignes2 =0;
     int colonnes2 =0;
     int maxval = 256;
    // int histogramme[MAX_VALEUR+1];
     char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
    // char nom[MAX_CHAINE] = "tamere.txt";
-   char nom2[MAX_CHAINE] = "citronade.pgm";
+   //char nom2[MAX_CHAINE] = "citronade.pgm";
     struct MetaData metadonnees;
     
-    struct MetaData metadonnees2 = {"Mathieu", "En 2009", "En Sciences Humaines le gros noob"};;
+    //struct MetaData metadonnees2 = {"Mathieu", "En 2009", "En Sciences Humaines le gros noob"};;
     
 	int retour;
 
@@ -39,8 +40,10 @@ int main()
     retour = pgm_lire(nom, image1, 
                       &lignes1, &colonnes1, 
                       &maxval, &metadonnees);
-                  
+    
 
+                  
+	retour = pgm_copier(image1, lignes1, colonnes1, image4, &lignes2, &colonnes2);
 	// exemple detraitement d'un code de retour (erreur ou reussite)
 	printf("-> Retour: ");
 	if (retour == OK)
@@ -50,9 +53,9 @@ int main()
 	printf("\n");
 
 	// autre exemple d'appel de fonction
-    pgm_ecrire(nom2, image1, 
+    /*pgm_ecrire(nom2, image1, 
                lignes1, colonnes1, 
-               maxval, metadonnees2);
+               maxval, metadonnees2);*/
 
     printf("-> Fin!\n");
 

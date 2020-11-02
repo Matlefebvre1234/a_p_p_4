@@ -81,3 +81,24 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
     return OK;
 	}
 }
+
+int pgm_copier(int matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes1, int matrice2[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes2, int *p_colonnes2)
+{
+		if(lignes1 == 0 && colonnes1 == 0) return ERREUR_TAILLE;
+		
+		else
+		{
+			*p_lignes2 = lignes1;
+			*p_colonnes2 = colonnes1;
+		    
+			for(int i = 0; i<lignes1 ;i++)
+			{
+				for(int j = 0; j<colonnes1; j++)
+				{
+					matrice2[i][j] = matrice1[i][j];
+				}
+			}
+		
+		return OK;
+		}
+}

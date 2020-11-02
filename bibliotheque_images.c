@@ -221,7 +221,7 @@ int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonne
 	//*p_lignes = lignes2 -lignes1;
 	//*p_colonnes = colonnes2 -colonnes1;
 	
-	for(int i =0; i < *p_lignes;i++)
+	for(int i =0; i < *p_lignes;igit ++)
 	{
 		k++;
 		z =0;	

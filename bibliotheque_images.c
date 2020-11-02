@@ -41,10 +41,10 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 			for(int j =0;j<*p_colonnes;j++)
 			{
 				fscanf(fichierOuvert,"%i",&matrice[i][j]);
-				printf("%3i",matrice[i][j]);
-				printf(" ");
+				//printf("%3i",matrice[i][j]);
+				//printf(" ");
 			}
-				printf("\n");
+				//printf("\n");
 		}
 
 		return OK;
@@ -101,4 +101,42 @@ int pgm_copier(int matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes
 		
 		return OK;
 		}
+}
+
+int pgm_creer_histogramme(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int colonnes, int histogramme[MAX_VALEUR+1])
+{
+	int ValeurTest[MAX_VALEUR+1];
+	
+	for(int i =0;i< MAX_VALEUR+1;i++)
+	{
+		histogramme[i] =0;
+		ValeurTest[i] = i;
+	}
+	
+	for(int i =0;i<MAX_HAUTEUR;i++)
+	{
+		for(int j =0;j<MAX_LARGEUR;j++)
+		{
+			
+			for(int k =0;k<MAX_LARGEUR +1;k++)
+			{
+				if(matrice[i][j] == ValeurTest[k]) histogramme[k]++;
+		
+			}
+	
+		
+		
+		}
+	
+	}
+	
+		for(int k =0;k< MAX_VALEUR+1;k++)
+	{
+		
+				printf("%d",ValeurTest[k]);
+				printf(" = ");
+				printf("%d\n",histogramme[k]);
+	}
+	
+	return 0;
 }

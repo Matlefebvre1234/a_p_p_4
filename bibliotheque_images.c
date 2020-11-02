@@ -15,7 +15,12 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 {
 	FILE *fichierOuvert = fopen(nom_fichier,"r");
 	
-	if(fichierOuvert == NULL) printf("erreur lecture fichier");
+	if(fichierOuvert == NULL) return ERREUR_FICHIER;
+	
+	else if(*p_lignes > MAX_HAUTEUR && *p_colonnes > MAX_HAUTEUR) return ERREUR_TAILLE;
+	
+	else if (*p_maxval>MAX_VALEUR) return ERREUR_FORMAT;
+	
 	else
 	{		
 		char texte[256];
@@ -41,10 +46,11 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 			}
 				printf("\n");
 		}
-		
+
+		return OK;
 	}
 	fclose(fichierOuvert);
-    return OK;
+
 }
 
 int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR], 
@@ -53,13 +59,17 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 {
 	FILE *fichierOuvert = fopen(nom_fichier, "a");
 	
+	if(fichierOuvert == NULL) return ERREUR_FICHIER;
+	
+	else
+	{
 	fprintf(fichierOuvert, "%s; %s; %s\n", metadonnees.auteur, metadonnees.dateCreation, metadonnees.lieuCreation);
 	fprintf(fichierOuvert, "%d %d\n", lignes, colonnes);
 	fprintf(fichierOuvert, "%d\n", maxval);
 	
-	for(int i = 0; i<colonnes ;i++)
+	for(int i = 0; i<lignes ;i++)
 		{
-			for(int j = 0; j<lignes; j++)
+			for(int j = 0; j<colonnes; j++)
 			{
 				fprintf(fichierOuvert, "%d ", matrice[i][j]);
 			}
@@ -69,4 +79,5 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 	
 	fclose(fichierOuvert);
     return OK;
+	}
 }

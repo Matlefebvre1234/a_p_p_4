@@ -18,11 +18,11 @@ int image3[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140, 178}, {29, 140, 19}};
 
 int main()
 {
-    int lignes1 =3;
-    int colonnes1 =3;
+    int lignes1 =0;
+    int colonnes1 =0;
     int lignes2 =0;
     int colonnes2 =0;
-    int maxval = 255;
+    int maxval = 256;
    // int histogramme[MAX_VALEUR+1];
     char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
    // char nom[MAX_CHAINE] = "tamere.txt";
@@ -50,18 +50,18 @@ int main()
 	printf("\n");
 
 	// autre exemple d'appel de fonction
-    pgm_ecrire(nom2, image3, 
+    pgm_ecrire(nom2, image1, 
                lignes1, colonnes1, 
                maxval, metadonnees2);
 
     printf("-> Fin!\n");
 
 	
-	printf("%d",retour);
+	/*printf("%d",retour);
 	printf("%d",lignes1);
 	printf("%d",lignes2);
 	printf("%d",colonnes1);
 	printf("%d",colonnes2);
-	printf("Allo");
+	printf("Allo");*/
     return 0;
 }

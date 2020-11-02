@@ -51,5 +51,22 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
                int lignes, int colonnes, 
                int maxval, struct MetaData metadonnees)
 {
+	FILE *fichierOuvert = fopen(nom_fichier, "a");
+	
+	fprintf(fichierOuvert, "%s; %s; %s\n", metadonnees.auteur, metadonnees.dateCreation, metadonnees.lieuCreation);
+	fprintf(fichierOuvert, "%d %d\n", lignes, colonnes);
+	fprintf(fichierOuvert, "%d\n", maxval);
+	
+	for(int i = 0; i<colonnes ;i++)
+		{
+			for(int j = 0; j<lignes; j++)
+			{
+				fprintf(fichierOuvert, "%d ", matrice[i][j]);
+			}
+			
+			fprintf(fichierOuvert, "\n");
+		}
+	
+	fclose(fichierOuvert);
     return OK;
 }

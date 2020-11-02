@@ -13,20 +13,24 @@ int image1[MAX_HAUTEUR][MAX_LARGEUR];
 int image2[MAX_HAUTEUR][MAX_LARGEUR];
 struct RGB imageRGB1[MAX_HAUTEUR][MAX_LARGEUR];
 struct RGB imageRGB2[MAX_HAUTEUR][MAX_LARGEUR];
+int image3[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140, 178}, {29, 140, 19}};
 
 
 int main()
 {
-    int lignes1 =0;
-    int colonnes1 =0;
+    int lignes1 =3;
+    int colonnes1 =3;
     int lignes2 =0;
     int colonnes2 =0;
-    int maxval =0;
+    int maxval = 255;
    // int histogramme[MAX_VALEUR+1];
     char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
    // char nom[MAX_CHAINE] = "tamere.txt";
+   char nom2[MAX_CHAINE] = "citronade.pgm";
     struct MetaData metadonnees;
-
+    
+    struct MetaData metadonnees2 = {"Mathieu", "En 2009", "En Sciences Humaines le gros noob"};;
+    
 	int retour;
 
     printf("-> Debut!\n");
@@ -46,9 +50,9 @@ int main()
 	printf("\n");
 
 	// autre exemple d'appel de fonction
-    pgm_ecrire(nom, image1, 
+    pgm_ecrire(nom2, image3, 
                lignes1, colonnes1, 
-               maxval, metadonnees);
+               maxval, metadonnees2);
 
     printf("-> Fin!\n");
 

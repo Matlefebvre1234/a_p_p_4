@@ -78,16 +78,6 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 			fprintf(fichierOuvert, "\n");
 		}
 		
-	for(int i = 0; i<lignes ;i++)
-		{
-			for(int j = 0; j<colonnes; j++)
-			{
-				printf("%d ", matrice[i][j]);
-			}
-			
-			printf("\n");
-		}	
-	
 	fclose(fichierOuvert);
     return OK;
 	}
@@ -201,6 +191,30 @@ int pgm_creer_negatif(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int col
 				matrice[i][j]  = maxval - matrice[i][j];
 			}
 		}
+		
+		return 0;
+	}
+}
+
+int pgm_sont_identiques(int matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes1, int matrice2[MAX_HAUTEUR][MAX_LARGEUR], int lignes2, int colonnes2)
+{
+	if(colonnes1 == 0 || lignes1 == 0 || colonnes2 == 0 || lignes2 == 0) return -1;
+	
+	else
+	{
+		if(colonnes1 != colonnes2 || lignes1 != lignes2) return 1;
+		
+		else
+		{
+			for(int i = 0; i<lignes1 ;i++)
+			{
+				for(int j = 0; j<colonnes1; j++)
+				{
+					if(matrice1[i][j] != matrice2[i][j]) return 1;
+				}
+			}
+		}
+		
 		
 		return 0;
 	}

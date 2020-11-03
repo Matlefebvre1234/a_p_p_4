@@ -206,32 +206,41 @@ int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonne
 	int matriceExtrait[MAX_HAUTEUR][MAX_LARGEUR];
 	int k =0;//compteur pour incrémentation
 	int z =0;//compteur pour incrémentation
-	for(int i =lignes1; i < lignes2;i++)
+	
+	
+	for(int i =lignes1; i <= lignes2;i++)
 	{
-			
-		for(int j =lignes1; j < lignes2;j++)
+		
+		z =0;	
+		for(int j =colonnes1; j <= colonnes2;j++)
 		{
-			if(i > MAX_HAUTEUR || j > MAX_LARGEUR)return -1;
-			matriceExtrait[i][j] = matrice[i][j];
-
+			
+			//if(i > MAX_HAUTEUR || j > MAX_LARGEUR)return -1;
+			matriceExtrait[k][z] = matrice[i][j];
+			z++;
+			
 		} 
+		k++;
 	
 	} 
 	
-	//*p_lignes = lignes2 -lignes1;
-	//*p_colonnes = colonnes2 -colonnes1;
-	
-	for(int i =0; i < *p_lignes;igit ++)
+	int ligne= lignes2 -lignes1;
+	int colonne = colonnes2 -colonnes1;
+	k=0;
+	z=0;
+	for(int i =0; i <= ligne;i++)
 	{
-		k++;
+		printf("%d ",i);
 		z =0;	
-		for(int j =lignes1; j < *p_colonnes;j++)
+		for(int j =0; j <= colonne;j++)
 		{
-			matrice[k][z] = matriceExtrait[i][j];
+			matrice[k][z] = matriceExtrait[k][z];
+			printf("%d\n",j);
+			printf("%d\n\n",matrice[i][j]);
 			z++;	
 		
 		} 
-		
+		k++;
 	} 
 	
 	return 0;

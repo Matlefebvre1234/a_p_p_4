@@ -27,8 +27,8 @@ int main()
     int colonnes2 =0;
     int maxval = 256;
     //int histogramme[MAX_VALEUR+1];
-   //char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
-   char nom[MAX_CHAINE] = "tamere.pgm";
+   char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
+   //char nom[MAX_CHAINE] = "tamere.pgm";
    char nom2[MAX_CHAINE] = "citronade.pgm";
     struct MetaData metadonnees;
     
@@ -55,7 +55,7 @@ int main()
 	//retour = pgm_sont_identiques(image3, 2,3,image5,2,2);
 	//retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 1);
 //	retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
-	retour = pgm_extraire(image1,9,0,16,16, &lignes1,&colonnes2);
+	retour = pgm_extraire(image1,129,99,195,255, &lignes1,&colonnes2);
 
 			
 	printf("-> Retour: ");

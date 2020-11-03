@@ -28,9 +28,10 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 		fgets(texte,256,fichierOuvert); //skip une lignep
 		printf("%s",texte);
 
-		fscanf(fichierOuvert,"%i %i",p_lignes,p_colonnes);
-		printf("%i ",*p_lignes);
+		fscanf(fichierOuvert,"%i %i",p_colonnes,p_lignes);
 		printf("%i\n",*p_colonnes);
+		printf("%i ",*p_lignes);
+		
 		
 		fscanf(fichierOuvert,"%i\n",p_maxval);
 		printf("%i\n",*p_maxval);
@@ -41,10 +42,10 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 			for(int j =0;j<*p_colonnes;j++)
 			{
 				fscanf(fichierOuvert,"%i",&matrice[i][j]);
-				printf("%3i",matrice[i][j]);
-				printf(" ");
+				//printf("%3i",matrice[i][j]);
+				//printf(" ");
 			}
-				printf("\n");
+			//	printf("\n");
 		}
 
 		return OK;
@@ -65,7 +66,7 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 	{
 	fprintf(fichierOuvert, "P2\n");
 	fprintf(fichierOuvert, "# %s; %s; %s\n", metadonnees.auteur, metadonnees.dateCreation, metadonnees.lieuCreation);
-	fprintf(fichierOuvert, "%d %d\n", lignes, colonnes);
+	fprintf(fichierOuvert, "%d %d\n", colonnes, lignes);
 	fprintf(fichierOuvert, "%d\n", maxval);
 	
 	for(int i = 0; i<lignes ;i++)
@@ -217,7 +218,7 @@ int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonne
 		for(int j =colonnes1; j <= colonnes2;j++)
 		{
 			
-			//if(i > MAX_HAUTEUR || j > MAX_LARGEUR)return -1;
+			if(i >= MAX_HAUTEUR || j >= MAX_LARGEUR)return -1;
 			matriceExtrait[k][z] = matrice[i][j];
 			z++;
 			
@@ -228,17 +229,18 @@ int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonne
 	
 	int ligne= lignes2 -lignes1;
 	int colonne = colonnes2 -colonnes1;
+	*p_lignes = ligne;
+	*p_colonnes = colonne;
+	printf("%d",*p_lignes);
+	printf("%d",*p_colonnes);
 	k=0;
 	z=0;
 	for(int i =0; i <= ligne;i++)
 	{
-		printf("%d ",i);
 		z =0;	
 		for(int j =0; j <= colonne;j++)
 		{
 			matrice[k][z] = matriceExtrait[k][z];
-			printf("%d\n",j);
-			printf("%d\n\n",matrice[i][j]);
 			z++;	
 		
 		} 

@@ -66,8 +66,8 @@ int main()
 	retour = pgm_creer_negatif(image1, lignes1, colonnes1, maxval);
 	//retour = pgm_sont_identiques(image3, 2,3,image5,2,2);
 	//retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 1);
+	retour = pgm_extraire(image1,100,50,191,255, &lignes1,&colonnes1);
 	//retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
-	//retour = pgm_extraire(image1,9,0,16,16, &lignes1,&colonnes2);
 	//retour = ppm_copier(imageRGB1, lignes1, colonnes1, imageRGB2, &lignes2, &colonnes2);
 	//retour = ppm_sont_identiques(imageRGB1, lignes1, colonnes1, imageRGB3, lignes2, colonnes2);
 

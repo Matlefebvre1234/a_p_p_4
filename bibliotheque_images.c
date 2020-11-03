@@ -29,8 +29,9 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 		printf("%s",texte);
 
 		fscanf(fichierOuvert,"%i %i",p_colonnes,p_lignes);
-		printf("%i ",*p_lignes);
 		printf("%i\n",*p_colonnes);
+		printf("%i ",*p_lignes);
+		
 		
 		fscanf(fichierOuvert,"%i\n",p_maxval);
 		printf("%i\n",*p_maxval);
@@ -226,17 +227,18 @@ int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonne
 	
 	int ligne= lignes2 -lignes1;
 	int colonne = colonnes2 -colonnes1;
+	*p_lignes = ligne;
+	*p_colonnes = colonne;
+	printf("%d",*p_lignes);
+	printf("%d",*p_colonnes);
 	k=0;
 	z=0;
 	for(int i =0; i <= ligne;i++)
 	{
-		printf("%d ",i);
 		z =0;	
 		for(int j =0; j <= colonne;j++)
 		{
 			matrice[k][z] = matriceExtrait[k][z];
-			printf("%d\n",j);
-			printf("%d\n\n",matrice[i][j]);
 			z++;	
 		
 		} 

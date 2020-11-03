@@ -13,6 +13,7 @@ int image1[MAX_HAUTEUR][MAX_LARGEUR];
 int image2[MAX_HAUTEUR][MAX_LARGEUR];
 struct RGB imageRGB1[MAX_HAUTEUR][MAX_LARGEUR];
 struct RGB imageRGB2[MAX_HAUTEUR][MAX_LARGEUR];
+struct RGB imageRGB3[MAX_HAUTEUR][MAX_HAUTEUR];
 int image3[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140, 178}, {29, 140, 19}};
 int image4[MAX_HAUTEUR][MAX_LARGEUR];
 int image5[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140}, {29, 140}};
@@ -38,25 +39,42 @@ int main()
 	int retour;
 
     printf("-> Debut!\n");
-
+	printf("\n Lire\n\n");
 	// exemple d'appel de fonction
      retour = ppm_lire(nom, imageRGB1, 
                       &lignes1, &colonnes1, 
                       &maxval, &metadonnees);
-                      
+     
+     printf("\n Lire\n\n");
+	 ppm_ecrire(nom2, imageRGB2, 
+               lignes1, colonnes1, 
+               maxval, metadonnees2);
+	
+	 printf("-> Retour: ");
+	 if (retour == OK)
+		printf("-> OK");
+		
+	 else if(retour == DIFFERENTES)printf("-> DIFFERENTES");
+	
+	 else
+		printf("-> ERREUR");
+	printf("\n");
+	
      //retour = pgm_creer_histogramme(image1,lignes1,colonnes1,histogramme);
     
 
                   
 	//retour = pgm_copier(image1, lignes1, colonnes1, image4, &lignes2, &colonnes2);
 	// exemple detraitement d'un code de retour (erreur ou reussite)
-	printf("\n Eclaircir\n\n");
+	printf("\n Copier\n\n");
 	//retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, maxval, 0);
 	//retour = pgm_creer_negatif(image1, lignes1, colonnes1, maxval);
 	//retour = pgm_sont_identiques(image3, 2,3,image5,2,2);
 	//retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 1);
-//	retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
-	retour = pgm_extraire(image1,9,0,16,16, &lignes1,&colonnes2);
+	//retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
+	//retour = pgm_extraire(image1,9,0,16,16, &lignes1,&colonnes2);
+	retour = ppm_copier(imageRGB1, lignes1, colonnes1, imageRGB2, &lignes2, &colonnes2);
+	//retour = ppm_sont_identiques(imageRGB1, lignes1, colonnes1, imageRGB3, lignes2, colonnes2);
 
 			
 	printf("-> Retour: ");
@@ -71,11 +89,21 @@ int main()
 	printf("\n");
 
 	// autre exemple d'appel de fonction
-	printf("\n ecrire\n\n");
-    ppm_ecrire(nom2, imageRGB1, 
+	printf("\n Ecrire\n\n");
+    retour = ppm_ecrire(nom2, imageRGB2, 
                lignes1, colonnes1, 
                maxval, metadonnees2);
-
+	
+	printf("-> Retour: ");
+	if (retour == OK)
+		printf("-> OK");
+		
+	else if(retour == DIFFERENTES)printf("-> DIFFERENTES");
+	
+	else
+		printf("-> ERREUR");
+	printf("\n");
+	
     printf("-> Fin!\n");
 
 	

@@ -369,6 +369,53 @@ int ppm_ecrire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR],
 	}
 }
 
+int ppm_copier(struct RGB matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes1, struct RGB matrice2[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes2, int *p_colonnes2)
+{
+	if(lignes1 == 0 && colonnes1 == 0) return ERREUR_TAILLE;
+		
+		else
+		{
+			*p_lignes2 = lignes1;
+			*p_colonnes2 = colonnes1;
+		    
+			for(int i = 0; i<lignes1 ;i++)
+			{
+				for(int j = 0; j<colonnes1; j++)
+				{
+					matrice2[i][j].valeurR = matrice1[i][j].valeurR;
+					matrice2[i][j].valeurG = matrice1[i][j].valeurG;
+					matrice2[i][j].valeurB = matrice1[i][j].valeurB;
+				}
+			}
+		
+		return OK;
+		}
+}
+
+int ppm_sont_identiques(struct RGB matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes1, struct RGB matrice2[MAX_HAUTEUR][MAX_LARGEUR], int lignes2, int colonnes2)
+{
+	if(colonnes1 == 0 || lignes1 == 0 || colonnes2 == 0 || lignes2 == 0) return -1;
+	
+	else
+	{
+		if(colonnes1 != colonnes2 || lignes1 != lignes2) return 1;
+		
+		else
+		{
+			for(int i = 0; i<lignes1 ;i++)
+			{
+				for(int j = 0; j<colonnes1; j++)
+				{
+					if( matrice1[i][j].valeurR != matrice2[i][j].valeurR || matrice1[i][j].valeurG != matrice2[i][j].valeurG || matrice1[i][j].valeurB != matrice2[i][j].valeurB) return 1;
+				}
+			}
+		}
+		
+		
+		return 0;
+	}
+}
+
 
 
 

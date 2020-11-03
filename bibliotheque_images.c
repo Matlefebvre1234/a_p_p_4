@@ -28,7 +28,7 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 		fgets(texte,256,fichierOuvert); //skip une lignep
 		printf("%s",texte);
 
-		fscanf(fichierOuvert,"%i %i",p_lignes,p_colonnes);
+		fscanf(fichierOuvert,"%i %i",p_colonnes,p_lignes);
 		printf("%i ",*p_lignes);
 		printf("%i\n",*p_colonnes);
 		
@@ -41,10 +41,10 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 			for(int j =0;j<*p_colonnes;j++)
 			{
 				fscanf(fichierOuvert,"%i",&matrice[i][j]);
-				printf("%3i",matrice[i][j]);
-				printf(" ");
+				//printf("%3i",matrice[i][j]);
+				//printf(" ");
 			}
-				printf("\n");
+			//	printf("\n");
 		}
 
 		return OK;
@@ -65,7 +65,7 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 	{
 	fprintf(fichierOuvert, "P2\n");
 	fprintf(fichierOuvert, "# %s; %s; %s\n", metadonnees.auteur, metadonnees.dateCreation, metadonnees.lieuCreation);
-	fprintf(fichierOuvert, "%d %d\n", lignes, colonnes);
+	fprintf(fichierOuvert, "%d %d\n", colonnes, lignes);
 	fprintf(fichierOuvert, "%d\n", maxval);
 	
 	for(int i = 0; i<lignes ;i++)

@@ -73,9 +73,11 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 			for(int j = 0; j<colonnes; j++)
 			{
 				fprintf(fichierOuvert, "%d ", matrice[i][j]);
+				printf("%d ", matrice[i][j]);
 			}
 			
 			fprintf(fichierOuvert, "\n");
+			printf("\n");
 		}
 		
 	fclose(fichierOuvert);

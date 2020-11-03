@@ -216,7 +216,7 @@ int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonne
 		for(int j =colonnes1; j <= colonnes2;j++)
 		{
 			
-			//if(i > MAX_HAUTEUR || j > MAX_LARGEUR)return -1;
+			if(i >= MAX_HAUTEUR || j >= MAX_LARGEUR)return -1;
 			matriceExtrait[k][z] = matrice[i][j];
 			z++;
 			

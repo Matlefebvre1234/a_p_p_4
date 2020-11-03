@@ -55,7 +55,7 @@ int main()
 	//retour = pgm_sont_identiques(image3, 2,3,image5,2,2);
 	//retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 1);
 //	retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
-	retour = pgm_extraire(image1,100,0,191,100, &lignes1,&colonnes1);
+	retour = pgm_extraire(image1,100,50,191,255, &lignes1,&colonnes1);
 
 			
 	printf("-> Retour: ");

@@ -27,9 +27,9 @@ int main()
 	
 	
 
-	test_pgm_ecrire(); //erreur
+	//test_pgm_ecrire(); //erreur
 	//test_pgm_extraire(); //erreur
-	//test_pgm_lire();//erreur
+	test_pgm_lire();//erreur
 	//test_pgm_pivoter90(); //erreur
 	//test_ppm_ecrire(); //erreur
 	//test_ppm_lire(); //erreur

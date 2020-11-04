@@ -17,24 +17,41 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 	
 	if(fichierOuvert == NULL) return ERREUR_FICHIER;
 	
-	else if(*p_lignes > MAX_HAUTEUR && *p_colonnes > MAX_HAUTEUR) return ERREUR_TAILLE;
-	
-	else if (*p_maxval>MAX_VALEUR) return ERREUR_FORMAT;
-	
 	else
 	{		
 		char texte[256];
-
+		char format[2];
+		
 		fgets(texte,256,fichierOuvert); //skip une lignep
-		printf("%s",texte);
-
+		//printf("%s\n", texte);
+		
+		if(texte[0] != '#')
+		{
+			format[0] = texte[0];
+			format[1] = texte[1];
+		}
+		
+		else
+		{
+			fscanf(fichierOuvert, "%s", format);
+		}
+		
+		//printf("%s\n", format);
+		
+		if(format[1] != '2') return ERREUR_FORMAT;
+		//printf("%s",texte);
+		
 		fscanf(fichierOuvert,"%i %i",p_colonnes,p_lignes);
-		printf("%i\n",*p_colonnes);
-		printf("%i ",*p_lignes);
+		
+		if(*p_lignes > MAX_HAUTEUR || *p_colonnes > MAX_HAUTEUR) return -2;
+		//printf("%i\n",*p_colonnes);
+		//printf("%i ",*p_lignes);
 		
 		
 		fscanf(fichierOuvert,"%i\n",p_maxval);
-		printf("%i\n",*p_maxval);
+		if (*p_maxval>MAX_VALEUR) return -3;
+		
+		//printf("%i\n",*p_maxval);
 		
 		for(int i =0;i<*p_lignes;i++)
 		{

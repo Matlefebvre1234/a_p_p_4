@@ -8,6 +8,7 @@ Description: Fichier de distribution pour GEN145.
 
 #include <stdio.h>
 #include "bibliotheque_images.h"
+#include "AutoValidation.h"
 
 int image1[MAX_HAUTEUR][MAX_LARGEUR];
 int image2[MAX_HAUTEUR][MAX_LARGEUR];
@@ -22,6 +23,7 @@ int image5[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140}, {29, 140}};
 
 int main()
 {
+	
     int lignes1 = 0;
 	int colonnes1 = 0;
     int lignes2 =0;
@@ -29,7 +31,7 @@ int main()
     int maxval = 256;
     //int histogramme[MAX_VALEUR+1];
    char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
-    //char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.ppm";
+   // char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.ppm";
    //char nom[MAX_CHAINE] = "tamere.pgm";
    char nom2[MAX_CHAINE] = "citronade.pgm";
     struct MetaData metadonnees;
@@ -52,7 +54,7 @@ int main()
 	 else if(retour == DIFFERENTES)printf("-> DIFFERENTES");
 	
 	 else
-		printf("-> ERREUR");
+	printf("-> ERREUR");
 	printf("\n");
 	
      //retour = pgm_creer_histogramme(image1,lignes1,colonnes1,histogramme);
@@ -63,10 +65,10 @@ int main()
 	// exemple detraitement d'un code de retour (erreur ou reussite)
 	printf("\n Copier\n\n");
 	//retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, maxval, 0);
-	retour = pgm_creer_negatif(image1, lignes1, colonnes1, maxval);
+	//retour = pgm_creer_negatif(image1, lignes1, colonnes1, maxval);
 	//retour = pgm_sont_identiques(image3, 2,3,image5,2,2);
-	//retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 1);
-	retour = pgm_extraire(image1,100,50,191,255, &lignes1,&colonnes1);
+	retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 1);
+	//retour = pgm_extraire(image1,100,50,191,255, &lignes1,&colonnes1);
 	//retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
 	//retour = ppm_copier(imageRGB1, lignes1, colonnes1, imageRGB2, &lignes2, &colonnes2);
 	//retour = ppm_sont_identiques(imageRGB1, lignes1, colonnes1, imageRGB3, lignes2, colonnes2);

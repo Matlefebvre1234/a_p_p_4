@@ -297,26 +297,52 @@ int pgm_sont_identiques(int matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int
 
 int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_colonnes, int sens)
 {
-	int temp;
-	
-	for(int i = 0; i<*p_lignes ;i++)
-		{
-			for(int j = 0; j<*p_colonnes; j++)
-			{
-				temp = matrice[i][j];
-				matrice[i][j] = matrice[j][i];
-				matrice[j][i] = temp;
-			}
-			
-		}
+    int temp[MAX_HAUTEUR][MAX_LARGEUR];
+    int temp1 = *p_colonnes;
+	int lignes;
+	int colonnes;
+
+    printf("%d %d", *p_lignes, *p_colonnes);
+
+    pgm_copier(matrice, *p_lignes, *p_colonnes, temp, &lignes, &colonnes);
+
+    *p_colonnes = *p_lignes;
+    *p_lignes = temp1;
+     lignes = *p_colonnes;
+     colonnes = *p_lignes;
+
+    for(int i = 0; i<*p_lignes ;i++)
+        {
+            for(int j = 0; j<*p_colonnes; j++)
+            {
+                matrice[i][j] = temp[j][i];
+                //printf("%d", matrice[i][j]);
+            }
+            //printf("\n");
+        }
+
+    printf("\n");
+
+    for(int i = 0; i<lignes ;i++)
+        {
 		
-	return 0;
+            for(int j = 0; j<colonnes; j++)
+            {
+                matrice[i][j] = temp[lignes - j - 1][i];
+               
+                //printf("%d", matrice[i][j]);
+            }
+            //printf("\n");
+     
+        }
+
+    return 0;
 }
 
 int ppm_lire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_colonnes, int *p_maxval, struct MetaData *p_metadonnees)
 {
+
 	FILE *fichierOuvert = fopen(nom_fichier,"r");
-	
 	if(fichierOuvert == NULL) return ERREUR_FICHIER;
 	
 	else if(*p_lignes > MAX_HAUTEUR && *p_colonnes > MAX_HAUTEUR) return ERREUR_TAILLE;

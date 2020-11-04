@@ -68,7 +68,7 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 	
 		else
 		{
-			fprintf(fichierOuvert, "#%s; %s; %s\n", metadonnees.auteur, metadonnees.dateCreation, metadonnees.lieuCreation);
+			fprintf(fichierOuvert, "#%s;%s;%s\n", metadonnees.auteur, metadonnees.dateCreation, metadonnees.lieuCreation);
 			fprintf(fichierOuvert, "P2\n");
 			fprintf(fichierOuvert, "%d %d\n", colonnes, lignes);
 			fprintf(fichierOuvert, "%d\n", maxval);

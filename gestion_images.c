@@ -27,24 +27,26 @@ int main()
 	
 	
 
-	//test_pgm_ecrire(); //erreur
-	test_pgm_extraire(); //erreur
+	test_pgm_ecrire(); //erreur
+	//test_pgm_extraire(); //erreur
 	//test_pgm_lire();//erreur
 	//test_pgm_pivoter90(); //erreur
 	//test_ppm_ecrire(); //erreur
 	//test_ppm_lire(); //erreur
 	//test_ppm_pivoter90()//erreur
-
+	
+	
     /*int lignes1 = 0;
 	int colonnes1 = 0;
     int lignes2 =0;
     int colonnes2 =0;
     int maxval = 256;
     //int histogramme[MAX_VALEUR+1];
-   char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
-   // char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.ppm";
+   //char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
+   char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.ppm";
   // char nom[MAX_CHAINE] = "tamere.pgm";
-   char nom2[MAX_CHAINE] = "citronade.pgm";
+   //char nom2[MAX_CHAINE] = "citronade.pgm";
+   char nom2[MAX_CHAINE] = "citronade.ppm";
     struct MetaData metadonnees;
     
     struct MetaData metadonnees2 = {"Mathieu", "En 2009", "En Sciences Humaines le gros noob"};;
@@ -55,6 +57,10 @@ int main()
 	printf("\n Lire\n\n");
 	// exemple d'appel de fonction
      retour = pgm_lire(nom, image1, 
+                      &lignes1, &colonnes1, 
+                      &maxval, &metadonnees);
+                      
+     retour = ppm_lire(nom, imageRGB1, 
                       &lignes1, &colonnes1, 
                       &maxval, &metadonnees);
 	
@@ -79,10 +85,11 @@ int main()
 	//retour = pgm_creer_negatif(image1, lignes1, colonnes1, maxval);
 	//retour = pgm_sont_identiques(image3, 2,3,image5,2,2);
 	//retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 1);
-	retour = pgm_extraire(image1,150,50,190,100, &lignes1,&colonnes1);
+	//retour = pgm_extraire(image1,150,50,190,100, &lignes1,&colonnes1);
 	//retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
 	//retour = ppm_copier(imageRGB1, lignes1, colonnes1, imageRGB2, &lignes2, &colonnes2);
 	//retour = ppm_sont_identiques(imageRGB1, lignes1, colonnes1, imageRGB3, lignes2, colonnes2);
+	//retour = ppm_pivoter90(imageRGB1, &lignes1, &colonnes1, 1);
 
 			
 	printf("-> Retour: ");
@@ -98,7 +105,7 @@ int main()
 
 	// autre exemple d'appel de fonction
 	printf("\n Ecrire\n\n");
-    retour = pgm_ecrire(nom2, image1, 
+    retour = ppm_ecrire(nom2, imageRGB1, 
                lignes1, colonnes1, 
                maxval, metadonnees2);
 	
@@ -120,6 +127,6 @@ int main()
 	//printf("%d",lignes2);
 	printf("%d",colonnes1);
 	//printf("%d",colonnes2);
-	printf("Allo");*/
-    return 0;
+	printf("Allo");
+    return 0;*/
 }

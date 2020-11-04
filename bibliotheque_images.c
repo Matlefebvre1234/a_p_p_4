@@ -60,29 +60,32 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 {
 	FILE *fichierOuvert = fopen(nom_fichier, "w");
 	
-	if(fichierOuvert == NULL) return ERREUR_FICHIER;
+	if(fichierOuvert == NULL) return -1;
 	
 	else
 	{
-	fprintf(fichierOuvert, "P2\n");
-	fprintf(fichierOuvert, "# %s; %s; %s\n", metadonnees.auteur, metadonnees.dateCreation, metadonnees.lieuCreation);
-	fprintf(fichierOuvert, "%d %d\n", colonnes, lignes);
-	fprintf(fichierOuvert, "%d\n", maxval);
+		if(lignes > MAX_HAUTEUR || colonnes > MAX_LARGEUR) return -3;
 	
-	for(int i = 0; i<lignes ;i++)
+		else
 		{
-			for(int j = 0; j<colonnes; j++)
-			{
-				fprintf(fichierOuvert, "%d ", matrice[i][j]);
-				printf("%d ", matrice[i][j]);
-			}
+			fprintf(fichierOuvert, "#%s; %s; %s\n", metadonnees.auteur, metadonnees.dateCreation, metadonnees.lieuCreation);
+			fprintf(fichierOuvert, "P2\n");
+			fprintf(fichierOuvert, "%d %d\n", colonnes, lignes);
+			fprintf(fichierOuvert, "%d\n", maxval);
+	
+			for(int i = 0; i<lignes ;i++)
+				{
+					for(int j = 0; j<colonnes; j++)
+					{
+						fprintf(fichierOuvert, "%d ", matrice[i][j]);
+					}
 			
-			fprintf(fichierOuvert, "\n");
-			printf("\n");
-		}
+					fprintf(fichierOuvert, "\n");
+				}
 		
-	fclose(fichierOuvert);
-    return OK;
+			fclose(fichierOuvert);
+			return OK;
+		}
 	}
 }
 
@@ -338,7 +341,7 @@ int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_c
 
     printf("\n");
 
-    for(int i = 0; i<lignes ;i++)
+    for(int i = 0; i<colonnes ;i++)
         {
 		
             for(int j = 0; j<colonnes; j++)
@@ -472,7 +475,50 @@ int ppm_sont_identiques(struct RGB matrice1[MAX_HAUTEUR][MAX_LARGEUR], int ligne
 
 int ppm_pivoter90(struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_colonnes, int sens)
 {
-	
+	struct RGB temp[MAX_HAUTEUR][MAX_LARGEUR];
+    int temp1 = *p_colonnes;
+	int lignes;
+	int colonnes;
+
+    printf("%d %d", *p_lignes, *p_colonnes);
+
+    ppm_copier(matrice, *p_lignes, *p_colonnes, temp, &lignes, &colonnes);
+
+    *p_colonnes = *p_lignes;
+    *p_lignes = temp1;
+     lignes = *p_colonnes;
+     colonnes = *p_lignes;
+
+    for(int i = 0; i<*p_lignes ;i++)
+        {
+            for(int j = 0; j<*p_colonnes; j++)
+            {
+                matrice[i][j].valeurR = temp[j][i].valeurR;
+                matrice[i][j].valeurG = temp[j][i].valeurG;
+                matrice[i][j].valeurB = temp[j][i].valeurB;
+                printf("%d %d %d", matrice[i][j].valeurR, matrice[i][j].valeurG, matrice[i][j].valeurB);
+            }
+            //printf("\n");
+        }
+
+    printf("\n");
+
+    for(int i = 0; i<colonnes ;i++)
+        {
+		
+            for(int j = 0; j<colonnes; j++)
+            {
+                matrice[i][j].valeurR = temp[lignes - j - 1][i].valeurR;
+                matrice[i][j].valeurG = temp[lignes - j - 1][i].valeurG;
+                matrice[i][j].valeurB = temp[lignes - j - 1][i].valeurB;
+               
+                //printf("%d", matrice[i][j]);
+            }
+            //printf("\n");
+     
+        }
+
+    return 0;
 	
 	
 	

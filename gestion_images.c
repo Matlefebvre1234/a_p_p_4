@@ -32,22 +32,20 @@ int main()
 	//test_pgm_lire();//erreur
 	//test_pgm_pivoter90(); //erreur
 	//test_pgm_extraire(); //erreur
-	//test_pgm_lire();//erreur
-	//test_ppm_ecrire(); //erreur
+	//test_pgm_pivoter90(); //erreur
 	test_ppm_lire(); //erreur
 	//test_ppm_pivoter90()//erreur
 	
-	/*
-    int lignes1 = 0;
+	//test_ppm_lire(); //erreur
+	//test_ppm_pivoter90();//erreur
+	
+	
+    /*int lignes1 = 0;
 	int colonnes1 = 0;
     int lignes2 =0;
     int maxval = 256;
     //int histogramme[MAX_VALEUR+1];
    //char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
-   char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.ppm";
-  // char nom[MAX_CHAINE] = "tamere.pgm";
-   //char nom2[MAX_CHAINE] = "citronade.pgm";
-   char nom2[MAX_CHAINE] = "citronade.ppm";
    //char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.ppm";
   // char nom[MAX_CHAINE] = "tamere.pgm";
    //char nom2[MAX_CHAINE] = "citronade.pgm";
@@ -65,9 +63,9 @@ int main()
                       &lignes1, &colonnes1, 
                       &maxval, &metadonnees);
                       
-     retour = ppm_lire(nom, imageRGB1, 
-                      &lignes1, &colonnes1, 
-                      &maxval, &metadonnees);
+     //retour = ppm_lire(nom, imageRGB1, 
+                      //&lignes1, &colonnes1, 
+                      //&maxval, &metadonnees);
 	
 	 printf("-> Retour: ");
 	 if (retour == OK)
@@ -137,13 +135,13 @@ int main()
 	
     printf("-> Fin!\n");
 
-	
 	//printf("%d",retour);
 	//printf("%d",lignes1);
 	////printf("%d",lignes2);
 	//printf("%d",colonnes1);
 	////printf("%d",colonnes2);
 	//printf("Allo");*/
+
 
     return 0;
 }

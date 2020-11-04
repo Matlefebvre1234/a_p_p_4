@@ -23,8 +23,23 @@ int image5[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140}, {29, 140}};
 
 int main()
 {
-	
-    int lignes1 = 0;
+	//AutoValidation();
+	//test_pgm_copier(); //reussi
+	//test_pgm_couleur_preponderante(); //reussi
+	//test_pgm_creer_histogramme(); // erreur
+	//test_pgm_creer_negatif(); //reussi
+	//test_pgm_eclaircir_noircir(); // reussi
+	//test_pgm_ecrire(); //erreur
+	//test_pgm_extraire(); //erreur
+	//test_pgm_lire();//erreur
+	//test_pgm_pivoter90(); //erreur
+	//test_pgm_sont_identiques(); //reussi
+	//test_ppm_copier(); //reussi
+	//test_ppm_ecrire(); //erreur
+	//test_ppm_lire(); //erreur
+	//test_ppm_pivoter90()//erreur
+	//	test_ppm_sont_identiques(); //reussi
+    /*int lignes1 = 0;
 	int colonnes1 = 0;
     int lignes2 =0;
     int colonnes2 =0;
@@ -109,6 +124,6 @@ int main()
 	//printf("%d",lignes2);
 	printf("%d",colonnes1);
 	//printf("%d",colonnes2);
-	printf("Allo");
+	printf("Allo");*/
     return 0;
 }

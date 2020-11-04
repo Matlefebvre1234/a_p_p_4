@@ -23,7 +23,7 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 		char format[2];
 		
 		fgets(texte,256,fichierOuvert); //skip une lignep
-		printf("%s\n", texte);
+		//printf("%s\n", texte);
 		
 		if(texte[0] != '#')
 		{
@@ -36,8 +36,9 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 			fscanf(fichierOuvert, "%s", format);
 		}
 		
-		printf("%s\n", format);
+		//printf("%s\n", format);
 		
+		if(format[0] != 'P') return ERREUR_FORMAT;
 		if(format[1] != '2') return ERREUR_FORMAT;
 		//printf("%s",texte);
 		
@@ -402,23 +403,78 @@ int ppm_lire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], i
 	FILE *fichierOuvert = fopen(nom_fichier,"r");
 	if(fichierOuvert == NULL) return ERREUR_FICHIER;
 	
-	else if(*p_lignes > MAX_HAUTEUR && *p_colonnes > MAX_HAUTEUR) return ERREUR_TAILLE;
-	
-	else if (*p_maxval>MAX_VALEUR) return ERREUR_FORMAT;
-	
 	else
-	{		
+	{	
 		char texte[256];
+		char format[256];
+		int i = 0;
+		int j = 0;
+		
+		fgets(texte,256,fichierOuvert); //skip une lignep	
+		printf("\n%s\n", texte);
+		
+		
+		printf("\n");
+		
+		if(texte[0] != '#')
+		{
+			format[0] = texte[0];
+			format[1] = texte[1];
+		}
+		
+		
+		else
+		{
+			while(texte[i+1] != ';')
+			{	
+				p_metadonnees->auteur[i] = texte[i+1];
+				printf("%c", p_metadonnees->auteur[i]);
+				i++;
+			}
+			
+			i++;
+			i++;
+			printf(" ");
+			
+			while(texte[i] != ';' || texte[i] != ' ')
+			{	
+				p_metadonnees->lieuCreation[j] = texte[i];
+				printf("%c", p_metadonnees->lieuCreation[j]);
+				i++;
+				j++;
+				
+			}
+			
+			printf("%d", j);
+			
+			/*while(texte[i] != ' ')
+			{	
+				p_metadonnees->dateCreation[j] = texte[i];
+				printf("%c", p_metadonnees->dateCreation[j]);
+				i++;
+				j++;
+			}*/
+			
+			printf("\n");
+			fgets(format,256,fichierOuvert);
+		}
+		
+		//printf("%s\n", format);
+		
+		if(format[0] != 'P') return ERREUR_FORMAT;
+		if(format[1] != '3') return ERREUR_FORMAT;
 
-		fgets(texte,256,fichierOuvert); //skip une lignep
-		printf("%s",texte);
-
-		fscanf(fichierOuvert,"%i %i",p_lignes,p_colonnes);
-		printf("%i ",*p_lignes);
-		printf("%i\n",*p_colonnes);
+		fscanf(fichierOuvert,"%d %d",p_colonnes,p_lignes);
+		//printf("%i ",*p_lignes);
+		//printf("%i\n",*p_colonnes);
+		
+		if(*p_lignes > MAX_HAUTEUR || *p_colonnes > MAX_HAUTEUR || *p_lignes < 0 || *p_colonnes < 0) return ERREUR_TAILLE;
+		//printf("%i\n",*p_colonnes);
+		//printf("%i ",*p_lignes);
+		
 		
 		fscanf(fichierOuvert,"%i\n",p_maxval);
-		printf("%i\n",*p_maxval);
+		if (*p_maxval>MAX_VALEUR) return -3;
 		
 		for(int i =0;i<*p_lignes;i++)
 		{
@@ -426,9 +482,9 @@ int ppm_lire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], i
 			for(int j =0;j<*p_colonnes;j++)
 			{
 				fscanf(fichierOuvert,"%i %i %i",&matrice[i][j].valeurR, &matrice[i][j].valeurG, &matrice[i][j].valeurB);
-				printf("%i %i %i ",matrice[i][j].valeurR, matrice[i][j].valeurG, matrice[i][j].valeurB);
+				//printf("%i %i %i ",matrice[i][j].valeurR, matrice[i][j].valeurG, matrice[i][j].valeurB);
 			}
-				printf("\n");
+				//printf("\n");
 		}
 
 		return OK;
@@ -445,23 +501,28 @@ int ppm_ecrire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR],
 	
 	else
 	{
-	fprintf(fichierOuvert, "P3\n");
-	fprintf(fichierOuvert, "# %s; %s; %s\n", metadonnees.auteur, metadonnees.dateCreation, metadonnees.lieuCreation);
-	fprintf(fichierOuvert, "%d %d\n", lignes, colonnes);
-	fprintf(fichierOuvert, "%d\n", maxval);
-	
-	for(int i = 0; i<lignes ;i++)
-		{
-			for(int j = 0; j<colonnes; j++)
-			{
-				fprintf(fichierOuvert, "%d %d %d ", matrice[i][j].valeurR, matrice[i][j].valeurG, matrice[i][j].valeurB);
-			}
-			
-			fprintf(fichierOuvert, "\n");
-		}
+		if(lignes > MAX_HAUTEUR || colonnes > MAX_LARGEUR || lignes < 0 || colonnes < 0) return -3;
 		
-	fclose(fichierOuvert);
-    return OK;
+		else
+		{
+			fprintf(fichierOuvert, "#%s;%s;%s\n", metadonnees.auteur, metadonnees.dateCreation, metadonnees.lieuCreation);
+			fprintf(fichierOuvert, "P3\n");
+			fprintf(fichierOuvert, "%d %d\n", colonnes, lignes);
+			fprintf(fichierOuvert, "%d\n", maxval);
+			
+			for(int i = 0; i<lignes ;i++)
+			{
+				for(int j = 0; j<colonnes; j++)
+				{
+					fprintf(fichierOuvert, "%d %d %d ", matrice[i][j].valeurR, matrice[i][j].valeurG, matrice[i][j].valeurB);
+				}
+			
+				fprintf(fichierOuvert, "\n");
+			}
+		
+		fclose(fichierOuvert);
+		return OK;
+		}
 	}
 }
 

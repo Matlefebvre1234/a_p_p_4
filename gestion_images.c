@@ -24,21 +24,17 @@ int image5[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140}, {29, 140}};
 int main()
 {
 	//AutoValidation();
-	//test_pgm_copier(); //reussi
-	//test_pgm_couleur_preponderante(); //reussi
-	//test_pgm_creer_histogramme(); // erreur
-	//test_pgm_creer_negatif(); //reussi
-	//test_pgm_eclaircir_noircir(); // reussi
+	
+	
+
 	//test_pgm_ecrire(); //erreur
-	//test_pgm_extraire(); //erreur
+	test_pgm_extraire(); //erreur
 	//test_pgm_lire();//erreur
 	//test_pgm_pivoter90(); //erreur
-	//test_pgm_sont_identiques(); //reussi
-	//test_ppm_copier(); //reussi
 	//test_ppm_ecrire(); //erreur
 	//test_ppm_lire(); //erreur
 	//test_ppm_pivoter90()//erreur
-	//	test_ppm_sont_identiques(); //reussi
+
     /*int lignes1 = 0;
 	int colonnes1 = 0;
     int lignes2 =0;
@@ -47,7 +43,7 @@ int main()
     //int histogramme[MAX_VALEUR+1];
    char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
    // char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.ppm";
-   //char nom[MAX_CHAINE] = "tamere.pgm";
+  // char nom[MAX_CHAINE] = "tamere.pgm";
    char nom2[MAX_CHAINE] = "citronade.pgm";
     struct MetaData metadonnees;
     
@@ -82,8 +78,8 @@ int main()
 	//retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, maxval, 0);
 	//retour = pgm_creer_negatif(image1, lignes1, colonnes1, maxval);
 	//retour = pgm_sont_identiques(image3, 2,3,image5,2,2);
-	retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 1);
-	//retour = pgm_extraire(image1,100,50,191,255, &lignes1,&colonnes1);
+	//retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 1);
+	retour = pgm_extraire(image1,150,50,190,100, &lignes1,&colonnes1);
 	//retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
 	//retour = ppm_copier(imageRGB1, lignes1, colonnes1, imageRGB2, &lignes2, &colonnes2);
 	//retour = ppm_sont_identiques(imageRGB1, lignes1, colonnes1, imageRGB3, lignes2, colonnes2);

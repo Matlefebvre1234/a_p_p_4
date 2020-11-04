@@ -148,7 +148,7 @@ int pgm_creer_histogramme(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int
 	
 	for(int i =0;i< MAX_VALEUR+1;i++)
 	{
-		histogramme[i] =-1;
+		histogramme[i] =0;
 		ValeurTest[i] = i;
 	}
 	
@@ -160,7 +160,6 @@ int pgm_creer_histogramme(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int
 			for(int k =0;k<MAX_LARGEUR +1;k++)
 			{
 				if(matrice[i][j] == ValeurTest[k]) histogramme[k]++;
-		
 			}
 		
 		}
@@ -206,9 +205,20 @@ int pgm_couleur_preponderante(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes,
 
 int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes1, int lignes2, int colonnes2, int *p_lignes, int *p_colonnes)
 {
+	if(lignes1 < 0 || lignes2 > *p_lignes || colonnes1 < 0 || colonnes2 > *p_colonnes) return -1; 
+	if(lignes2 < 0 || lignes1 > *p_lignes || colonnes2 < 0 || colonnes1 > *p_colonnes) return -1; 
+	if(*p_lignes > MAX_HAUTEUR || *p_lignes<0 || *p_colonnes < 0)return -1;
+	if(*p_colonnes > MAX_LARGEUR)return -1;
+	if(lignes1 > lignes2 || colonnes1 > colonnes2) return -1; 
+	
+	lignes1--;
+	lignes2--;
+	colonnes1--;
+	colonnes2--;
 	int matriceExtrait[MAX_HAUTEUR][MAX_LARGEUR];
 	int k =0;//compteur pour incrémentation
 	int z =0;//compteur pour incrémentation
+	
 	
 	
 	for(int i =lignes1; i <= lignes2;i++)
@@ -227,18 +237,19 @@ int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonne
 	
 	} 
 	
-	int ligne= lignes2 -lignes1;
-	int colonne = colonnes2 -colonnes1;
+	int ligne= lignes2 -lignes1 +1 ;
+	int colonne = colonnes2 -colonnes1 +1 ;
 	*p_lignes = ligne;
 	*p_colonnes = colonne;
 	printf("%d",*p_lignes);
 	printf("%d",*p_colonnes);
 	k=0;
 	z=0;
-	for(int i =0; i <= ligne;i++)
+
+	for(int i =0; i < ligne;i++)
 	{
 		z =0;	
-		for(int j =0; j <= colonne;j++)
+		for(int j =0; j < colonne;j++)
 		{
 			matrice[k][z] = matriceExtrait[k][z];
 			z++;	
@@ -246,7 +257,11 @@ int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonne
 		} 
 		k++;
 	} 
-	
+	if(lignes1 < 0 || lignes2 > *p_lignes || colonnes1 < 0 || colonnes2 > *p_colonnes) return -1; 
+	if(lignes2 < 0 || lignes1 > *p_lignes || colonnes2 < 0 || colonnes1 > *p_colonnes) return -1; 
+	if(*p_lignes > MAX_HAUTEUR || *p_lignes<0 || *p_colonnes < 0)return -1;
+	if(*p_colonnes > MAX_LARGEUR)return -1;
+	if(lignes1 > lignes2 || colonnes1 > colonnes2) return -1; 
 	return 0;
 }
 

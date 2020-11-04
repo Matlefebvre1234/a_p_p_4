@@ -33,10 +33,10 @@ int main()
 	//test_pgm_pivoter90(); //erreur
 	//test_ppm_ecrire(); //erreur
 	//test_ppm_lire(); //erreur
-	//test_ppm_pivoter90()//erreur
+	test_ppm_pivoter90();//erreur
 	
 	
-    int lignes1 = 0;
+    /*int lignes1 = 0;
 	int colonnes1 = 0;
     int lignes2 =0;
     int colonnes2 =0;
@@ -141,7 +141,7 @@ int main()
 	////printf("%d",lignes2);
 	//printf("%d",colonnes1);
 	////printf("%d",colonnes2);
-	//printf("Allo");
+	//printf("Allo");*/
 
 
     return 0;

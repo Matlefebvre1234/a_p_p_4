@@ -65,6 +65,25 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 			//	printf("\n");
 		}
 
+	
+	for(int i =0;i<10;i++)
+	{
+			for(int j =0;j<10;j++)
+	{
+		
+	printf("%d ", matrice[i][j]);
+		
+		
+		
+		
+	}
+		
+			printf("\n");
+		
+		
+		
+		
+	}
 		return OK;
 	}
 	fclose(fichierOuvert);
@@ -318,15 +337,28 @@ int pgm_sont_identiques(int matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int
 	}
 }
 
-int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_colonnes, int sens)
+int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR],int *p_lignes,int *p_colonnes , int sens)
 {
     int temp[MAX_HAUTEUR][MAX_LARGEUR];
     int temp1 = *p_colonnes;
 	int lignes;
 	int colonnes;
 
-    //printf("%d %d", *p_lignes, *p_colonnes);
-
+    printf("%d %d\n", *p_lignes, *p_colonnes);
+	
+	for(int i = 0; i<10;i++)
+	{
+		
+	for(int j = 0; j<10;j++)
+	{
+		
+		printf("%d ",matrice[i][j]);
+		}
+		printf("\n");
+		}
+		
+		
+		
     pgm_copier(matrice, *p_lignes, *p_colonnes, temp, &lignes, &colonnes);
 
     *p_colonnes = *p_lignes;
@@ -340,25 +372,27 @@ int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_c
 	{
 		for(int i = 0; i<*p_colonnes ;i++)
 			{
-				for(int j = 0; j<*p_colonnes; j++)
+				for(int j = 0; j<*p_lignes; j++)
 				{
 					matrice[i][j] = temp[j][i];
-					//printf("%d", matrice[i][j]);
+					//printf("%d ", matrice[i][j]);
 				}
 				//printf("\n");
 			}
 
-		printf("\n");
-
+		//printf("\n");
+			printf("\nResultat\n ");
+			printf("%d %d\n ",*p_lignes,*p_colonnes);
 			for(int i = 0; i<colonnes ;i++)
 			{
-				for(int j = 0; j<colonnes; j++)
+				for(int j = 0; j<lignes; j++)
 				{
 					matrice[i][j] = temp[lignes - j - 1][i];
                
-					//printf("%d", matrice[i][j]);
+					
+					printf("%d ", matrice[i][j]);
 				}
-				//printf("\n");
+				printf("\n");
      
 			}
 
@@ -369,7 +403,7 @@ int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_c
 	{		
 		for(int i = 0; i<*p_colonnes; i++)
 			{
-				for(int j = 0; j<*p_colonnes; j++)
+				for(int j = 0; j<*p_lignes; j++)
 				{
 					matrice[i][j] = temp[j][i];
 					//printf("%d", matrice[i][j]);
@@ -381,7 +415,7 @@ int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_c
 
 		for(int i = 0; i<colonnes ;i++)
 			{
-				for(int j = 0; j<colonnes; j++)
+				for(int j = 0; j<lignes; j++)
 				{
 					matrice[i][j] = temp[j][colonnes - i - 1];
                

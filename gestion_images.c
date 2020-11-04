@@ -27,11 +27,8 @@ int main()
 	
 	
 
-	//test_pgm_ecrire(); //erreur
-	//test_pgm_extraire(); //erreur
-	//test_pgm_lire();//erreur
-	test_pgm_pivoter90(); //erreur
-	//test_pgm_extraire(); //erreur
+	//test_pgm_pivoter90(); //erreur
+	
 	//test_pgm_lire();//erreur
 	//test_pgm_pivoter90(); //erreur
 	//test_ppm_ecrire(); //erreur
@@ -39,17 +36,16 @@ int main()
 	//test_ppm_pivoter90()//erreur
 	
 	
-   /* int lignes1 = 0;
-	int lignes1 = 0;
+    int lignes1 = 0;
 	int colonnes1 = 0;
     int lignes2 =0;
     int colonnes2 =0;
     int maxval = 256;
     //int histogramme[MAX_VALEUR+1];
    //char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
-   char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
+ //  char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
   // char nom[MAX_CHAINE] = "tamere.pgm";
-   char nom2[MAX_CHAINE] = "citronade.pgm";
+ //  char nom2[MAX_CHAINE] = "citronade.pgm";
    //char nom2[MAX_CHAINE] = "citronade.ppm";
    //char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.ppm";
    char nom[MAX_CHAINE] = "tamere.pgm";
@@ -68,9 +64,9 @@ int main()
                       &lignes1, &colonnes1, 
                       &maxval, &metadonnees);
                       
-     retour = ppm_lire(nom, imageRGB1, 
-                      &lignes1, &colonnes1, 
-                      &maxval, &metadonnees);
+     //retour = ppm_lire(nom, imageRGB1, 
+                      //&lignes1, &colonnes1, 
+                      //&maxval, &metadonnees);
 	
 	 printf("-> Retour: ");
 	 if (retour == OK)
@@ -98,7 +94,7 @@ int main()
 	retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 0);
 	//retour = pgm_extraire(image1,150,50,190,100, &lignes1,&colonnes1);
 	//retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 1);
-	retour = pgm_extraire(image1,1,1,3,3, &lignes1,&colonnes1);
+	//retour = pgm_extraire(image1,1,1,3,3, &lignes1,&colonnes1);
 	//retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
 	//retour = ppm_copier(imageRGB1, lignes1, colonnes1, imageRGB2, &lignes2, &colonnes2);
 	//retour = ppm_sont_identiques(imageRGB1, lignes1, colonnes1, imageRGB3, lignes2, colonnes2);
@@ -140,13 +136,13 @@ int main()
 	
     printf("-> Fin!\n");
 
-	
 	//printf("%d",retour);
 	//printf("%d",lignes1);
 	////printf("%d",lignes2);
 	//printf("%d",colonnes1);
 	////printf("%d",colonnes2);
-	//printf("Allo");*/
+	//printf("Allo");
+
 
     return 0;
 }

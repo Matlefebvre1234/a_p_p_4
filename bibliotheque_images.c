@@ -208,25 +208,18 @@ int pgm_couleur_preponderante(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes,
 
 int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes1, int lignes2, int colonnes2, int *p_lignes, int *p_colonnes)
 {
-	if(lignes1 < 0 || lignes2 > *p_lignes || colonnes1 < 0 || colonnes2 > *p_colonnes) return -1; 
-	if(lignes2 < 0 || lignes1 > *p_lignes || colonnes2 < 0 || colonnes1 > *p_colonnes) return -1; 
-	if(*p_lignes > MAX_HAUTEUR || *p_lignes<0 || *p_colonnes < 0)return -1;
-	if(*p_colonnes > MAX_LARGEUR)return -1;
+	//vérification des spécifications
+	if(lignes1 < 0 || lignes2 >= *p_lignes || colonnes1 < 0 || colonnes2 >= *p_colonnes) return -1; 
+	if(*p_lignes > MAX_HAUTEUR || *p_lignes<0 || *p_colonnes < 0||*p_colonnes > MAX_LARGEUR)return -1;
 	if(lignes1 > lignes2 || colonnes1 > colonnes2) return -1; 
 	
-	lignes1--;
-	lignes2--;
-	colonnes1--;
-	colonnes2--;
-	int matriceExtrait[MAX_HAUTEUR][MAX_LARGEUR];
+	int matriceExtrait[MAX_HAUTEUR][MAX_LARGEUR]; // matrice des valeurs extraites
 	int k =0;//compteur pour incrémentation
 	int z =0;//compteur pour incrémentation
 	
-	
-	
+	//copi les valeurs de la matrice dans matrice extrait
 	for(int i =lignes1; i <= lignes2;i++)
 	{
-		
 		z =0;	
 		for(int j =colonnes1; j <= colonnes2;j++)
 		{
@@ -234,37 +227,32 @@ int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonne
 			if(i >= MAX_HAUTEUR || j >= MAX_LARGEUR)return -1;
 			matriceExtrait[k][z] = matrice[i][j];
 			z++;
-			
 		} 
 		k++;
-	
 	} 
+	
 	
 	int ligne= lignes2 -lignes1 +1 ;
 	int colonne = colonnes2 -colonnes1 +1 ;
 	*p_lignes = ligne;
 	*p_colonnes = colonne;
-	printf("%d",*p_lignes);
-	printf("%d",*p_colonnes);
-	k=0;
-	z=0;
 
+	//Place les valeurs copier dans la matrice original
 	for(int i =0; i < ligne;i++)
 	{
-		z =0;	
+		
 		for(int j =0; j < colonne;j++)
 		{
-			matrice[k][z] = matriceExtrait[k][z];
-			z++;	
-		
+			matrice[i][j] = matriceExtrait[i][j];
+			
 		} 
-		k++;
 	} 
+	
+	//vérification spécifications
 	if(lignes1 < 0 || lignes2 > *p_lignes || colonnes1 < 0 || colonnes2 > *p_colonnes) return -1; 
 	if(lignes2 < 0 || lignes1 > *p_lignes || colonnes2 < 0 || colonnes1 > *p_colonnes) return -1; 
-	if(*p_lignes > MAX_HAUTEUR || *p_lignes<0 || *p_colonnes < 0)return -1;
-	if(*p_colonnes > MAX_LARGEUR)return -1;
-	if(lignes1 > lignes2 || colonnes1 > colonnes2) return -1; 
+	if(*p_lignes > MAX_HAUTEUR || *p_lignes<0 || *p_colonnes < 0||*p_colonnes > MAX_LARGEUR)return -1;
+
 	return 0;
 }
 

@@ -23,7 +23,7 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 		char format[2];
 		
 		fgets(texte,256,fichierOuvert); //skip une lignep
-		//printf("%s\n", texte);
+		printf("%s\n", texte);
 		
 		if(texte[0] != '#')
 		{
@@ -36,7 +36,7 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 			fscanf(fichierOuvert, "%s", format);
 		}
 		
-		//printf("%s\n", format);
+		printf("%s\n", format);
 		
 		if(format[1] != '2') return ERREUR_FORMAT;
 		//printf("%s",texte);
@@ -337,7 +337,7 @@ int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_c
 	int lignes;
 	int colonnes;
 
-    printf("%d %d", *p_lignes, *p_colonnes);
+    //printf("%d %d", *p_lignes, *p_colonnes);
 
     pgm_copier(matrice, *p_lignes, *p_colonnes, temp, &lignes, &colonnes);
 
@@ -345,33 +345,67 @@ int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_c
     *p_lignes = temp1;
      lignes = *p_colonnes;
      colonnes = *p_lignes;
+	
+	if(sens != 1 && sens != 0) return ERREUR;
+	
+	if(sens == 1)
+	{
+		for(int i = 0; i<*p_colonnes ;i++)
+			{
+				for(int j = 0; j<*p_colonnes; j++)
+				{
+					matrice[i][j] = temp[j][i];
+					//printf("%d", matrice[i][j]);
+				}
+				//printf("\n");
+			}
 
-    for(int i = 0; i<*p_lignes ;i++)
-        {
-            for(int j = 0; j<*p_colonnes; j++)
-            {
-                matrice[i][j] = temp[j][i];
-                //printf("%d", matrice[i][j]);
-            }
-            //printf("\n");
-        }
+		printf("\n");
 
-    printf("\n");
-
-    for(int i = 0; i<colonnes ;i++)
-        {
-		
-            for(int j = 0; j<colonnes; j++)
-            {
-                matrice[i][j] = temp[lignes - j - 1][i];
+			for(int i = 0; i<colonnes ;i++)
+			{
+				for(int j = 0; j<colonnes; j++)
+				{
+					matrice[i][j] = temp[lignes - j - 1][i];
                
-                //printf("%d", matrice[i][j]);
-            }
-            //printf("\n");
+					//printf("%d", matrice[i][j]);
+				}
+				//printf("\n");
      
-        }
+			}
 
-    return 0;
+		return 0;
+	}
+	
+	else
+	{		
+		for(int i = 0; i<*p_colonnes; i++)
+			{
+				for(int j = 0; j<*p_colonnes; j++)
+				{
+					matrice[i][j] = temp[j][i];
+					//printf("%d", matrice[i][j]);
+				}
+				//printf("\n");
+			}
+
+		//printf("\n");
+
+		for(int i = 0; i<colonnes ;i++)
+			{
+				for(int j = 0; j<colonnes; j++)
+				{
+					matrice[i][j] = temp[j][colonnes - i - 1];
+               
+					//printf("%d", matrice[i][j]);
+				}
+				//printf("\n");
+     
+			}
+			
+
+		return 0;
+	}
 }
 
 int ppm_lire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_colonnes, int *p_maxval, struct MetaData *p_metadonnees)

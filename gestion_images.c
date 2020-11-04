@@ -31,12 +31,16 @@ int main()
 	//test_pgm_extraire(); //erreur
 	//test_pgm_lire();//erreur
 	test_pgm_pivoter90(); //erreur
+	//test_pgm_extraire(); //erreur
+	//test_pgm_lire();//erreur
+	//test_pgm_pivoter90(); //erreur
 	//test_ppm_ecrire(); //erreur
 	//test_ppm_lire(); //erreur
 	//test_ppm_pivoter90()//erreur
 	
 	
    /* int lignes1 = 0;
+	int lignes1 = 0;
 	int colonnes1 = 0;
     int lignes2 =0;
     int colonnes2 =0;
@@ -47,6 +51,10 @@ int main()
   // char nom[MAX_CHAINE] = "tamere.pgm";
    char nom2[MAX_CHAINE] = "citronade.pgm";
    //char nom2[MAX_CHAINE] = "citronade.ppm";
+   //char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.ppm";
+   char nom[MAX_CHAINE] = "tamere.pgm";
+   char nom2[MAX_CHAINE] = "citronade.pgm";
+  //char nom2[MAX_CHAINE] = "citronade.ppm";
     struct MetaData metadonnees;
     
     struct MetaData metadonnees2 = {"Mathieu", "En 2009", "En Sciences Humaines le gros noob"};;
@@ -89,6 +97,8 @@ int main()
 	//retour = pgm_sont_identiques(image3, 2,3,image5,2,2);
 	retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 0);
 	//retour = pgm_extraire(image1,150,50,190,100, &lignes1,&colonnes1);
+	//retour = pgm_pivoter90(image1, &lignes1, &colonnes1, 1);
+	retour = pgm_extraire(image1,1,1,3,3, &lignes1,&colonnes1);
 	//retour = pgm_eclaircir_noircir(image1, lignes1, colonnes1, 255, 20);
 	//retour = ppm_copier(imageRGB1, lignes1, colonnes1, imageRGB2, &lignes2, &colonnes2);
 	//retour = ppm_sont_identiques(imageRGB1, lignes1, colonnes1, imageRGB3, lignes2, colonnes2);
@@ -112,6 +122,11 @@ int main()
     retour = pgm_ecrire(nom2, image1, 
                lignes1, colonnes1, 
                maxval, metadonnees2);
+               
+    retour = pgm_ecrire(nom2, image1, 
+               lignes1, colonnes1, 
+               maxval, metadonnees2);
+               
 	
 	printf("-> Retour: ");
 	if (retour == OK)
@@ -132,5 +147,6 @@ int main()
 	//printf("%d",colonnes1);
 	////printf("%d",colonnes2);
 	//printf("Allo");*/
+
     return 0;
 }

@@ -246,12 +246,6 @@ int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonne
 			
 		} 
 	} 
-	
-	//vérification spécifications
-	if(lignes1 < 0 || lignes2 > *p_lignes || colonnes1 < 0 || colonnes2 > *p_colonnes) return -1; 
-	if(lignes2 < 0 || lignes1 > *p_lignes || colonnes2 < 0 || colonnes1 > *p_colonnes) return -1; 
-	if(*p_lignes > MAX_HAUTEUR || *p_lignes<0 || *p_colonnes < 0||*p_colonnes > MAX_LARGEUR)return -1;
-
 	return 0;
 }
 

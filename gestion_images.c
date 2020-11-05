@@ -24,9 +24,9 @@ int image5[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140}, {29, 140}};
 int main()
 {
 	
-
+	AutoValidation();
 	
-    int lignes1 = 0;
+    /*int lignes1 = 0;
 	int colonnes1 = 0;
     int lignes2 =0;
     int maxval = 256;
@@ -126,7 +126,7 @@ int main()
 	////printf("%d",lignes2);
 	//printf("%d",colonnes1);
 	////printf("%d",colonnes2);
-	//printf("Allo");
+	//printf("Allo");*/
 
 
     return 0;

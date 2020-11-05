@@ -446,58 +446,40 @@ int ppm_lire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], i
 		int j = 0;
 		
 		fgets(texte,256,fichierOuvert); //skip une lignep	
-		printf("\n%s\n", texte);
+		//printf("\n%s\n", texte);
 		
 		
-		printf("\n");
+	//	printf("\n");
 		
 		if(texte[0] != '#')
 		{
 			format[0] = texte[0];
 			format[1] = texte[1];
+			printf("allo1 %s\n", format);
 		}
 		
 		
 		else
 		{
-			while(texte[i+1] != ';')
-			{	
-				p_metadonnees->auteur[i] = texte[i+1];
-				printf("%c", p_metadonnees->auteur[i]);
-				i++;
-			}
+			rewind(fichierOuvert);
+			char t[256];
+			fscanf(fichierOuvert,"%*c%[^;]%*c%",p_metadonnees->auteur);
+			fscanf(fichierOuvert,"%[^;]%*c%",p_metadonnees->dateCreation);
+			fscanf(fichierOuvert,"%[^\n]",p_metadonnees->lieuCreation);
+			fgets(t,256,fichierOuvert);
+			printf("Aloo3%s",t);
+			printf("tamere\n");
+			printf("%s",p_metadonnees->auteur);
+			printf("%s",p_metadonnees->dateCreation);
+			printf("%s",p_metadonnees->lieuCreation);
 			
-			i++;
-			i++;
-			printf(" ");
 			
-			while(texte[i] != ';' || texte[i] != ' ')
-			{	
-				p_metadonnees->lieuCreation[j] = texte[i];
-				printf("%c", p_metadonnees->lieuCreation[j]);
-				i++;
-				j++;
-				
-			}
-			
-			printf("%d", j);
-			
-			/*while(texte[i] != ' ')
-			{	
-				p_metadonnees->dateCreation[j] = texte[i];
-				printf("%c", p_metadonnees->dateCreation[j]);
-				i++;
-				j++;
-			}*/
-			
-			printf("\n");
 			fgets(format,256,fichierOuvert);
+			printf("allo2 %s\n", format);
 		}
 		
-		//printf("%s\n", format);
 		
-		if(format[0] != 'P') return ERREUR_FORMAT;
-		if(format[1] != '3') return ERREUR_FORMAT;
+		if(format[1] != '3'|| format[0] != 'P') return ERREUR_FORMAT;
 
 		fscanf(fichierOuvert,"%d %d",p_colonnes,p_lignes);
 		//printf("%i ",*p_lignes);

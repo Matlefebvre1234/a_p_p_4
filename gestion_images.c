@@ -23,27 +23,18 @@ int image5[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140}, {29, 140}};
 
 int main()
 {
-	AutoValidation();
-	
 	
 
-	//test_pgm_ecrire(); //erreur
-	//test_pgm_extraire(); //erreur
-	//test_pgm_lire();//erreur
-	//test_pgm_pivoter90(); //erreur
-	//test_ppm_lire(); //erreur
-	//test_ppm_pivoter90();//erreur
 	
-	
-    /*int lignes1 = 0;
+    int lignes1 = 0;
 	int colonnes1 = 0;
     int lignes2 =0;
     int maxval = 256;
     //int histogramme[MAX_VALEUR+1];
-   //char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
+   char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.pgm";
    //char nom[MAX_CHAINE] = "Sherbrooke_Frontenac_nuit.ppm";
   // char nom[MAX_CHAINE] = "tamere.pgm";
-   //char nom2[MAX_CHAINE] = "citronade.pgm";
+   char nom2[MAX_CHAINE] = "citronade.pgm";
   //char nom2[MAX_CHAINE] = "citronade.ppm";
     struct MetaData metadonnees;
     
@@ -135,7 +126,7 @@ int main()
 	////printf("%d",lignes2);
 	//printf("%d",colonnes1);
 	////printf("%d",colonnes2);
-	//printf("Allo");*/
+	//printf("Allo");
 
 
     return 0;

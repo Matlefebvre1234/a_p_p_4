@@ -13,16 +13,15 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
              int *p_lignes, int *p_colonnes, 
              int *p_maxval, struct MetaData *p_metadonnees)
 {
-	FILE *fichierOuvert = fopen(nom_fichier,"r");
-	
+FILE *fichierOuvert = fopen(nom_fichier,"r");
 	if(fichierOuvert == NULL) return ERREUR_FICHIER;
 	
 	else
-	{		
+	{	
 		char texte[256];
-		char format[2];
+		char format[256];
 		
-		fgets(texte,256,fichierOuvert); //skip une lignep
+		fgets(texte,256,fichierOuvert); //skip une lignep	
 		
 		if(texte[0] != '#')
 		{
@@ -30,24 +29,25 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 			format[1] = texte[1];
 		}
 		
+		
 		else
 		{
 			rewind(fichierOuvert);
 			char t[256];
-			fscanf(fichierOuvert,"%*c%[^;]%*c%",p_metadonnees->auteur);
-			fscanf(fichierOuvert,"%[^;]%*c%",p_metadonnees->dateCreation);
+			fscanf(fichierOuvert,"%*c%[^;]%*c",p_metadonnees->auteur);
+			fscanf(fichierOuvert,"%[^;]%*c",p_metadonnees->dateCreation);
 			fscanf(fichierOuvert,"%[^\n]",p_metadonnees->lieuCreation);
 			fgets(t,256,fichierOuvert);
 			
-			fscanf(fichierOuvert, "%s", format);
+			fgets(format,256,fichierOuvert);
 		}
 		
-		if(format[0] != 'P') return ERREUR_FORMAT;
-		if(format[1] != '2') return ERREUR_FORMAT;
 		
-		fscanf(fichierOuvert,"%i %i",p_colonnes,p_lignes);
+		if(format[1] != '2'|| format[0] != 'P') return ERREUR_FORMAT;
+
+		fscanf(fichierOuvert,"%d %d",p_colonnes,p_lignes);
 		
-		if(*p_lignes > MAX_HAUTEUR || *p_colonnes > MAX_HAUTEUR) return -2;
+		if(*p_lignes > MAX_HAUTEUR || *p_colonnes > MAX_HAUTEUR || *p_lignes < 0 || *p_colonnes < 0) return ERREUR_TAILLE;
 		
 		fscanf(fichierOuvert,"%i\n",p_maxval);
 		if (*p_maxval>MAX_VALEUR) return -3;
@@ -60,12 +60,10 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 				fscanf(fichierOuvert,"%i",&matrice[i][j]);
 			}
 		}
-	
+		
+		fclose(fichierOuvert);
 		return OK;
 	}
-	
-	fclose(fichierOuvert);
-
 }
 
 int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR], 
@@ -388,8 +386,8 @@ int ppm_lire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], i
 		{
 			rewind(fichierOuvert);
 			char t[256];
-			fscanf(fichierOuvert,"%*c%[^;]%*c%",p_metadonnees->auteur);
-			fscanf(fichierOuvert,"%[^;]%*c%",p_metadonnees->dateCreation);
+			fscanf(fichierOuvert,"%*c%[^;]%*c",p_metadonnees->auteur);
+			fscanf(fichierOuvert,"%[^;]%*c",p_metadonnees->dateCreation);
 			fscanf(fichierOuvert,"%[^\n]",p_metadonnees->lieuCreation);
 			fgets(t,256,fichierOuvert);
 			
@@ -414,10 +412,11 @@ int ppm_lire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], i
 				fscanf(fichierOuvert,"%i %i %i",&matrice[i][j].valeurR, &matrice[i][j].valeurG, &matrice[i][j].valeurB);
 			}
 		}
-
+		
+		fclose(fichierOuvert);
 		return OK;
 	}
-	fclose(fichierOuvert);
+	
 
 }
 

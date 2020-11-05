@@ -14,22 +14,25 @@ int pgm_lire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
              int *p_maxval, struct MetaData *p_metadonnees)
 {
 FILE *fichierOuvert = fopen(nom_fichier,"r");
+
+	//Vérifie si le fichier existe
 	if(fichierOuvert == NULL) return ERREUR_FICHIER;
 	
 	else
 	{	
-		char texte[256];
-		char format[256];
+		char texte[256]// Variable temporaire;
+		char format[256]// Variable pour stocker le format;
 		
-		fgets(texte,256,fichierOuvert); //skip une lignep	
+		fgets(texte,256,fichierOuvert);	
 		
+		//Vérifie si la première ligne contient des métadonnées
 		if(texte[0] != '#')
 		{
 			format[0] = texte[0];
 			format[1] = texte[1];
 		}
 		
-		
+		//Lit les métadonnées
 		else
 		{
 			rewind(fichierOuvert);
@@ -42,16 +45,20 @@ FILE *fichierOuvert = fopen(nom_fichier,"r");
 			fgets(format,256,fichierOuvert);
 		}
 		
-		
+		//Vérifie le format du fichier
 		if(format[1] != '2'|| format[0] != 'P') return ERREUR_FORMAT;
 
 		fscanf(fichierOuvert,"%d %d",p_colonnes,p_lignes);
 		
+		//Vérifie les dimensions du fichier
 		if(*p_lignes > MAX_HAUTEUR || *p_colonnes > MAX_HAUTEUR || *p_lignes < 0 || *p_colonnes < 0) return ERREUR_TAILLE;
 		
 		fscanf(fichierOuvert,"%i\n",p_maxval);
+		
+		//Vérifie les dimensions du fichier
 		if (*p_maxval>MAX_VALEUR) return -3;
 		
+		//lit les données pour les pixels de l'image
 		for(int i =0;i<*p_lignes;i++)
 		{
 			
@@ -72,12 +79,16 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 {
 	FILE *fichierOuvert = fopen(nom_fichier, "w");
 	
+	//Vérifie si le fichier existe
 	if(fichierOuvert == NULL) return -1;
 	
 	else
 	{
+		
+		//Vérifie les dimensions de l'image
 		if(lignes > MAX_HAUTEUR || colonnes > MAX_LARGEUR) return -3;
-	
+		
+		//Écrit les informations
 		else
 		{
 			fprintf(fichierOuvert, "#%s;%s;%s\n", metadonnees.auteur, metadonnees.dateCreation, metadonnees.lieuCreation);
@@ -103,6 +114,7 @@ int pgm_ecrire(char nom_fichier[], int matrice[MAX_HAUTEUR][MAX_LARGEUR],
 
 int pgm_copier(int matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes1, int matrice2[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes2, int *p_colonnes2)
 {
+		//Vérifie les dimensions de l'image
 		if(lignes1 == 0 && colonnes1 == 0) return ERREUR_TAILLE;
 		
 		else
@@ -124,6 +136,7 @@ int pgm_copier(int matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes
 
 int pgm_eclaircir_noircir(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int colonnes, int maxval, int valeur)
 {
+	//Vérifie les dimensions de l'image
 	if(lignes == 0 || colonnes == 0)
 	{
 		return -1;
@@ -251,6 +264,7 @@ int pgm_extraire(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonne
 
 int pgm_creer_negatif(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int colonnes, int maxval)
 {
+	//Vérifie les dimensions
 	if(lignes == 0 || colonnes == 0)
 	{
 		return -1;
@@ -272,6 +286,7 @@ int pgm_creer_negatif(int matrice[MAX_HAUTEUR][MAX_LARGEUR], int lignes, int col
 
 int pgm_sont_identiques(int matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes1, int matrice2[MAX_HAUTEUR][MAX_LARGEUR], int lignes2, int colonnes2)
 {
+	//Vérifie les dimensions
 	if(colonnes1 == 0 || lignes1 == 0 || colonnes2 == 0 || lignes2 == 0) return -1;
 	
 	else
@@ -296,13 +311,13 @@ int pgm_sont_identiques(int matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int
 
 int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR],int *p_lignes,int *p_colonnes , int sens)
 {
-    int temp[MAX_HAUTEUR][MAX_LARGEUR];
-    int temp1 = *p_colonnes;
+    int temp[MAX_HAUTEUR][MAX_LARGEUR]// Tableau temporaire pour stocker le tableau de référence;
+    int temp1 = *p_colonnes //variable temporaire pour inverser les lignes et les colonnes;
 	int lignes;
 	int colonnes;
 
 		
-		
+	//Création d'un tableau de référence	
     pgm_copier(matrice, *p_lignes, *p_colonnes, temp, &lignes, &colonnes);
 
     *p_colonnes = *p_lignes;
@@ -310,8 +325,10 @@ int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR],int *p_lignes,int *p_col
      lignes = *p_colonnes;
      colonnes = *p_lignes;
 	
+	//Vérification d'un valeur de sens correcte
 	if(sens != 1 && sens != 0) return ERREUR;
 	
+	//Sens horaire
 	if(sens == 1)
 	{
 		for(int i = 0; i<*p_colonnes ;i++)
@@ -333,6 +350,7 @@ int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR],int *p_lignes,int *p_col
 		return 0;
 	}
 	
+	//Sens antihoraire
 	else
 	{		
 		for(int i = 0; i<*p_colonnes; i++)
@@ -360,22 +378,25 @@ int ppm_lire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], i
 {
 
 	FILE *fichierOuvert = fopen(nom_fichier,"r");
+	
+	//Vérifie si le fichier existe
 	if(fichierOuvert == NULL) return ERREUR_FICHIER;
 	
 	else
 	{	
-		char texte[256];
-		char format[256];
+		char texte[256]//Tableau temporaire;
+		char format[256]//Tableau pour stocker le format du fichier;
 		
-		fgets(texte,256,fichierOuvert); //skip une lignep	
+		fgets(texte,256,fichierOuvert);
 		
+		//Vérifie si la première ligne contient des métadonnées
 		if(texte[0] != '#')
 		{
 			format[0] = texte[0];
 			format[1] = texte[1];
 		}
 		
-		
+		//Lit les métadonnées
 		else
 		{
 			rewind(fichierOuvert);
@@ -388,16 +409,20 @@ int ppm_lire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], i
 			fgets(format,256,fichierOuvert);
 		}
 		
-		
+		//Vérifie le format du fichier
 		if(format[1] != '3'|| format[0] != 'P') return ERREUR_FORMAT;
 
 		fscanf(fichierOuvert,"%d %d",p_colonnes,p_lignes);
 		
+		//Vérifie les dimensions du fichier
 		if(*p_lignes > MAX_HAUTEUR || *p_colonnes > MAX_HAUTEUR || *p_lignes < 0 || *p_colonnes < 0) return ERREUR_TAILLE;
 		
 		fscanf(fichierOuvert,"%i\n",p_maxval);
+		
+		//Vérifie les dimensions du fichier
 		if (*p_maxval>MAX_VALEUR) return -3;
 		
+		//Lit les valeurs des pîxels de l'image
 		for(int i =0;i<*p_lignes;i++)
 		{
 			
@@ -418,10 +443,12 @@ int ppm_ecrire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR],
 {
 	FILE *fichierOuvert = fopen(nom_fichier, "w");
 	
+	//Vérifie si le fichier existe
 	if(fichierOuvert == NULL) return ERREUR_FICHIER;
 	
 	else
 	{
+		//Vérifie les dimensions
 		if(lignes > MAX_HAUTEUR || colonnes > MAX_LARGEUR || lignes < 0 || colonnes < 0) return -3;
 		
 		else
@@ -449,29 +476,31 @@ int ppm_ecrire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR],
 
 int ppm_copier(struct RGB matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes1, struct RGB matrice2[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes2, int *p_colonnes2)
 {
+	//Vérifie les dimensions
 	if(lignes1 == 0 && colonnes1 == 0) return ERREUR_TAILLE;
 		
-		else
+	else
+	{
+		*p_lignes2 = lignes1;
+		*p_colonnes2 = colonnes1;
+	    
+		for(int i = 0; i<lignes1 ;i++)
 		{
-			*p_lignes2 = lignes1;
-			*p_colonnes2 = colonnes1;
-		    
-			for(int i = 0; i<lignes1 ;i++)
+			for(int j = 0; j<colonnes1; j++)
 			{
-				for(int j = 0; j<colonnes1; j++)
-				{
-					matrice2[i][j].valeurR = matrice1[i][j].valeurR;
-					matrice2[i][j].valeurG = matrice1[i][j].valeurG;
-					matrice2[i][j].valeurB = matrice1[i][j].valeurB;
-				}
+				matrice2[i][j].valeurR = matrice1[i][j].valeurR;
+				matrice2[i][j].valeurG = matrice1[i][j].valeurG;
+				matrice2[i][j].valeurB = matrice1[i][j].valeurB;
 			}
-		
-		return OK;
 		}
+	
+		return OK;
+	}
 }
 
 int ppm_sont_identiques(struct RGB matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int colonnes1, struct RGB matrice2[MAX_HAUTEUR][MAX_LARGEUR], int lignes2, int colonnes2)
 {
+	//Vérifie les dimensions
 	if(colonnes1 == 0 || lignes1 == 0 || colonnes2 == 0 || lignes2 == 0) return -1;
 	
 	else
@@ -496,14 +525,12 @@ int ppm_sont_identiques(struct RGB matrice1[MAX_HAUTEUR][MAX_LARGEUR], int ligne
 
 int ppm_pivoter90(struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_colonnes, int sens)
 {
-	struct RGB temp[MAX_HAUTEUR][MAX_LARGEUR];
-    int temp1 = *p_colonnes;
+	struct RGB temp[MAX_HAUTEUR][MAX_LARGEUR]//Tableau de référence;
+    int temp1 = *p_colonnes//Valeur temporaire pour inverser lignes et colonnes;
 	int lignes;
 	int colonnes;
 
-
-		
-		
+	//Création du tableau de référence
     ppm_copier(matrice, *p_lignes, *p_colonnes, temp, &lignes, &colonnes);
 
     *p_colonnes = *p_lignes;
@@ -511,8 +538,10 @@ int ppm_pivoter90(struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, i
      lignes = *p_colonnes;
      colonnes = *p_lignes;
 	
+	//Vérification d'une valeur de sens correcte
 	if(sens != 1 && sens != 0) return ERREUR;
 	
+	//Sens horaire
 	if(sens == 1)
 	{
 		for(int i = 0; i<*p_colonnes ;i++)
@@ -534,6 +563,7 @@ int ppm_pivoter90(struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, i
 		return 0;
 	}
 	
+	//Sens antihoraire
 	else
 	{		
 		for(int i = 0; i<*p_colonnes; i++)

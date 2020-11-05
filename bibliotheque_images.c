@@ -20,8 +20,8 @@ FILE *fichierOuvert = fopen(nom_fichier,"r");
 	
 	else
 	{	
-		char texte[256]// Variable temporaire;
-		char format[256]// Variable pour stocker le format;
+		char texte[256];// Variable temporaire
+		char format[256];// Variable pour stocker le format
 		
 		fgets(texte,256,fichierOuvert);	
 		
@@ -311,8 +311,8 @@ int pgm_sont_identiques(int matrice1[MAX_HAUTEUR][MAX_LARGEUR], int lignes1, int
 
 int pgm_pivoter90(int matrice[MAX_HAUTEUR][MAX_LARGEUR],int *p_lignes,int *p_colonnes , int sens)
 {
-    int temp[MAX_HAUTEUR][MAX_LARGEUR]// Tableau temporaire pour stocker le tableau de référence;
-    int temp1 = *p_colonnes //variable temporaire pour inverser les lignes et les colonnes;
+    int temp[MAX_HAUTEUR][MAX_LARGEUR];// Tableau temporaire pour stocker le tableau de référence
+    int temp1 = *p_colonnes; //variable temporaire pour inverser les lignes et les colonnes
 	int lignes;
 	int colonnes;
 
@@ -384,8 +384,8 @@ int ppm_lire(char nom_fichier[], struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], i
 	
 	else
 	{	
-		char texte[256]//Tableau temporaire;
-		char format[256]//Tableau pour stocker le format du fichier;
+		char texte[256];//Tableau temporaire
+		char format[256];//Tableau pour stocker le format du fichier
 		
 		fgets(texte,256,fichierOuvert);
 		
@@ -525,8 +525,8 @@ int ppm_sont_identiques(struct RGB matrice1[MAX_HAUTEUR][MAX_LARGEUR], int ligne
 
 int ppm_pivoter90(struct RGB matrice[MAX_HAUTEUR][MAX_LARGEUR], int *p_lignes, int *p_colonnes, int sens)
 {
-	struct RGB temp[MAX_HAUTEUR][MAX_LARGEUR]//Tableau de référence;
-    int temp1 = *p_colonnes//Valeur temporaire pour inverser lignes et colonnes;
+	struct RGB temp[MAX_HAUTEUR][MAX_LARGEUR];//Tableau de référence
+    int temp1 = *p_colonnes;//Valeur temporaire pour inverser lignes et colonnes
 	int lignes;
 	int colonnes;
 

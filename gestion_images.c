@@ -23,7 +23,7 @@ int image5[MAX_HAUTEUR][MAX_LARGEUR] = {{120, 140}, {29, 140}};
 
 int main()
 {
-	//AutoValidation();
+	AutoValidation();
 	
 	
 
@@ -31,11 +31,6 @@ int main()
 	//test_pgm_extraire(); //erreur
 	//test_pgm_lire();//erreur
 	//test_pgm_pivoter90(); //erreur
-	//test_pgm_extraire(); //erreur
-	//test_pgm_pivoter90(); //erreur
-	test_ppm_lire(); //erreur
-	//test_ppm_pivoter90()//erreur
-	
 	//test_ppm_lire(); //erreur
 	//test_ppm_pivoter90();//erreur
 	
